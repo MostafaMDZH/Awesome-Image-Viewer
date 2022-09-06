@@ -43,7 +43,7 @@
     > .shadow{
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0,0,0,.8);
         opacity: 0;
         transition: opacity 160ms ease-in-out;
     }
@@ -81,42 +81,40 @@
                 }
             }
         }
-        > .toolBar{     display: none;
+        > .toolbar{
             width: 55px;
             height: auto;
             position: absolute;
             top: 0;
             right: 0;
-            > #closeButton,
-            > #editButton,
-            > #deleteButton{
-                // @extend .darkTransparentBackground;//todo
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            > .closeButton{
+                @extend .darkTransparentBackground;
                 width: 100%;
-                height: 50px;
-                background-color: rgba(0, 0, 0, 0.05);
+                height: 55px;
+                border-bottom-left-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                > div{
+                    width: fit-content;
+                    height: fit-content;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            > .customButton{
+                @extend .darkTransparentBackground;
+                width: 100%;
+                height: 55px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                background-size: 18px auto;
                 background-repeat: no-repeat;
                 background-position: center center;
-                float: right;
-                margin-bottom: 5px;
-            }
-            > #closeButton{
-                height: 60px;
-                // background-image: url(../../assets/Close_AA.svg);
-                background-size:14px auto;
-                border-bottom-left-radius: 3px;
-            }
-            > #closeButton.multiButtonsMode{
-                background-position: center calc(50% + 7px);
-            }
-            > #editButton{
-                // background-image: url(../../assets/Upload.svg);
-                background-size:18px auto;
-                display: none;
-            }
-            > #deleteButton{
-                // background-image: url(../../assets/Trash_AA.svg);
-                background-size:17px auto;
-                display: none;
             }
         }
         > .arrowButton{ display: none;

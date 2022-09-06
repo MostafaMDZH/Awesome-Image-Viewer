@@ -17,10 +17,12 @@ class ImageViewer {
         this.showThumbnails = parameters.showThumbnails;
         //show images:
         this.showImages();
-        //set theme;
-        this.setTheme(parameters.theme);
+        //show toolbar:
+        this.showToolbar();
         //set style:
         this.setStyle(parameters.style);
+        //hide events:
+        this.addEventToHide();
         //finally show:
         this.show();
     }
@@ -54,9 +56,10 @@ class ImageViewer {
                             <div class="imageContainer"><img class="image" alt=""/></div> -->
                         </div>
                     </div>
-                    <div class="toolBar">
+                    <div class="toolbar">
+                        <button class="closeButton"><div><svg fill="#aaa" width="19" height="19" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
                         <!-- this will auto generate with js:
-                        <input type="button" class="actionButton closeButton"> -->
+                        <input type="button" class="customButton editButton"> -->
                     </div>
                     <input type="button" class="arrowButton rightButton">
                     <input type="button" class="arrowButton leftButton" >
@@ -88,7 +91,7 @@ class ImageViewer {
         const html = `
             <input
                 type="button"
-                class="actionButton"
+                class="customButton"
                 title="${name}"
                 style="${'background-image:' + "url('" + iconSrc + "');"} ${iconSize !== '' ? ('background-size:' + iconSize + ';') : ''}"
             />`;
@@ -119,14 +122,14 @@ class ImageViewer {
             imagesWrapper.appendChild(imageHtml);
         });
     }
-    //setTheme:
-    setTheme(theme) {
-        if (theme === undefined)
-            return;
-        this.theme == theme;
-        this.view.classList.remove('light');
-        this.view.classList.remove('dark');
-        this.view.classList.add(theme);
+    //showToolbar:
+    showToolbar() {
+        var _a;
+        const toolbar = this.view.getElementsByClassName('toolbar')[0];
+        (_a = this.buttons) === null || _a === void 0 ? void 0 : _a.forEach((button) => {
+            const buttonHtml = ImageViewer.getButtonHtml(button.name, button.iconSrc, button.iconSize);
+            toolbar.appendChild(buttonHtml);
+        });
     }
     //setStyle:
     setStyle(style) {
@@ -148,6 +151,22 @@ class ImageViewer {
             thisView.view.classList.add('visible');
         }, 50); //slight delay between adding to DOM and running css animation
     }
+    //addEventToHide:
+    addEventToHide() {
+        const thisView = this;
+        const closeButton = this.view.getElementsByClassName('closeButton')[0];
+        closeButton.addEventListener('click', e => {
+            thisView.hide();
+        });
+        const container = this.view.getElementsByClassName('container')[0];
+        container.addEventListener('click', e => {
+            thisView.hide();
+        });
+        const shadow = this.view.getElementsByClassName('shadow')[0];
+        shadow.addEventListener('click', e => {
+            thisView.hide();
+        });
+    }
     //hide:
     hide() {
         this.view.classList.remove('visible');
@@ -158,9 +177,6 @@ class ImageViewer {
     }
 }
 exports.default = ImageViewer;
-//default values:
-ImageViewer.ROW_HEIGHT = 40;
-ImageViewer.COLUMN_WIDTH = 187;
 const Style = `
 
 `;

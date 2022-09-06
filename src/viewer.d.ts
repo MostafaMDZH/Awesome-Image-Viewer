@@ -4,7 +4,7 @@ declare type image = {
     description?: string;
 };
 declare type button = {
-    title: string;
+    name: string;
     iconSrc: string;
     iconSize: string;
     onSelect: () => void;
@@ -14,19 +14,15 @@ declare type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
-    theme?: string;
     style?: object;
 };
 export default class ImageViewer {
-    static readonly ROW_HEIGHT: number;
-    static readonly COLUMN_WIDTH: number;
     protected viewID: number;
     protected view: HTMLElement;
     protected images: image[];
     protected currentSelected?: number;
     protected buttons?: button[];
     protected showThumbnails?: boolean;
-    protected theme?: string;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
@@ -37,9 +33,10 @@ export default class ImageViewer {
     protected static getThumbnailHtml(number: number, name: string, imageSrc: string): ChildNode;
     protected static getChildNode(html: string): ChildNode;
     protected showImages(): void;
-    setTheme(theme?: string): void;
+    protected showToolbar(): void;
     setStyle(style?: object): void;
     protected show(): void;
+    protected addEventToHide(): void;
     protected hide(): void;
 }
 export {};
