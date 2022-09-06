@@ -1,0 +1,55 @@
+{
+  "name": "awesome-image-viewer",
+  "description": "React, Angular, Vue, and Typescript compatible image viewer",
+  "version": "1.0.0",
+  "author": "Mostafa Mohammadzadeh",
+  "license": "MIT",
+  "main": "src/viewer.js",
+  "types": "src/viewer.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test-cov": "jest --coverage",
+    "pub": "npm publish",
+    "deploy": "cd website && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "keywords": [
+    "react",
+    "angular",
+    "vue",
+    "typescript",
+    "next",
+    "module",
+    "component",
+    "image viewer",
+    "react component",
+    "javascript",
+    "image",
+    "gallery",
+    "react image viewer",
+    "imageViewer",
+    "reactjs gallery",
+    "reactjs",
+    "nextjs",
+    "next gallery",
+    "ui",
+    "nextjs image",
+    "jquery",
+    "ts",
+    "js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MostafaMDZH/Awesome-Image-Viewer.git"
+  },
+  "homepage": "https://awesome-image-viewer.demos.mostafa-mdzh.ir",
+  "bugs": {
+    "url": "https://github.com/MostafaMDZH/Awesome-Image-Viewer/issues"
+  }
+}
