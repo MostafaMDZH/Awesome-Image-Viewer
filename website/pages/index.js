@@ -23,7 +23,23 @@ export default function Main(){
         if(hasShow) return;
         hasShow = true;
         new ImageViewer({
-
+            images: [
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    name: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    name: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    name: 'Adonis Vernalis'
+                }
+            ]
         });
     }, 1000);
 
