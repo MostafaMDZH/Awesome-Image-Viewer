@@ -1,0 +1,26 @@
+{
+  "name": "awesome-image-viewer-website",
+  "description": "Demo and documentation for Awesome Image Viewer npm package",
+  "version": "1.0.0",
+  "author": "Mostafa Mohammadzadeh",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "lint": "next lint",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "dependencies": {
+    "awesome-snackbar": "^2.0.3",
+    "next": "12.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.54.0"
+  },
+  "devDependencies": {
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.3"
+  }
+}

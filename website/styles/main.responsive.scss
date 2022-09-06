@@ -1,0 +1,117 @@
+@media screen and (max-width: 1200px){
+    #window{
+        > #header{
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 5px;
+            top: 0;
+            z-index: 1;
+        }
+        > .container{
+            max-width: 880px;
+            margin-left: -40px;
+            padding-top: 80px;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px){
+    #window{
+        > #header{
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        > .container{
+            max-width: 860px;
+            margin-left: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #window{
+        > #header{
+            display: none;
+        }
+        > .container{
+            padding-top: 35px;
+            padding-bottom: 30px;
+            > #main{
+                justify-content: center;
+                gap: 0;
+                > #navigation{
+                    display: none;
+                }
+                > #content{
+                    > #github{
+                        display: block;
+                    }
+                }
+            }
+        }
+        > #footer{
+            flex-direction: column;
+            gap: 0;
+            > #dash,
+            > #githubLink{
+                display: none;
+            }
+            > #awesomeComponents{
+                display: block;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px){
+    #window{
+        > .container{
+            padding-top: 25px;
+            padding-right: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 500px){
+    #window::-webkit-scrollbar{
+        width: 4px;
+    }
+    #window{
+        > .container{
+            padding-top: 15px;
+            padding-left: 15px;
+            padding-right: 10px;
+            > #main{
+                > #content{
+                    > .sectionName{
+                        margin-top: 20px;
+                    }
+                    > #installation{
+                        margin-top: 35px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    #window{
+        > .container{
+            > #main{
+                > #content{
+                    > #name-versionWrapper{
+                        margin-bottom: 20px;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 22px;
+                        > #appName{
+                            font-size: 3.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

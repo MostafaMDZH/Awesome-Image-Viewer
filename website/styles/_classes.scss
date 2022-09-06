@@ -1,0 +1,99 @@
+/*
+    Background:
+*/
+
+//light transparent background:
+.transparentBackground{
+    transition: background-color 150ms;
+}
+.transparentBackground:enabled:active{
+    background-color: rgba(0, 0, 0, 0.035) !important;
+}
+@media (hover: hover) and (pointer: fine){
+    .transparentBackground:enabled:hover{
+        background-color: rgba(0, 0, 0, 0.04) !important;
+    }
+    .transparentBackground:enabled:focus{
+        background-color: rgba(0, 0, 0, 0.06) !important;
+    }
+    .transparentBackground:enabled:active{
+        background-color: rgba(0, 0, 0, 0.07) !important;
+    }
+}
+.transparentBackground:disabled{
+     opacity: 0.5;
+     cursor: default;
+}
+
+//light transparent background:
+.darkTransparentBackground{
+    transition: background-color 200ms ease-in-out;
+}
+.darkTransparentBackground:enabled:active{
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+@media (hover: hover) and (pointer: fine){
+    .darkTransparentBackground:enabled:hover{
+        background-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    .darkTransparentBackground:enabled:focus{
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    .darkTransparentBackground:enabled:active{
+        background-color: rgba(255, 255, 255, 0.25) !important;
+    }
+}
+.darkTransparentBackground:disabled{
+     opacity: 0.5;
+     cursor: default;
+}
+
+/*
+    custom scrollbar
+*/
+
+//thinScrollbar_light:
+.thinScrollbar_light::-webkit-scrollbar{
+    width: 6px;
+    height: 4px;
+}
+.thinScrollbar_light::-webkit-scrollbar-track{
+    background: transparent;
+}
+.thinScrollbar_light::-webkit-scrollbar-thumb{
+    background: #c4c4c4;
+    border-radius: 20px;
+}
+.thinScrollbar_dark{
+    @extend .thinScrollbar_light;
+}
+.thinScrollbar_dark::-webkit-scrollbar-thumb{
+    background: #222;
+}
+//ultraThinScrollbar_light:
+.ultraThinScrollbar_light::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+}
+.ultraThinScrollbar_light::-webkit-scrollbar-track{
+    background: transparent;
+}
+.ultraThinScrollbar_light::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 20px;
+}
+.ultraThinScrollbar_dark{
+    @extend .ultraThinScrollbar_light;
+}
+.ultraThinScrollbar_dark::-webkit-scrollbar-thumb{
+    background: #8a8a8a;
+}
+//not touch screen:
+.notTouchScreen{
+      @extend .thinScrollbar_light;
+    *{@extend .thinScrollbar_light;}
+}
+.darkMode.notTouchScreen{
+    @extend .thinScrollbar_dark;
+    *{@extend .thinScrollbar_dark;}
+}

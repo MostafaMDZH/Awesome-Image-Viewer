@@ -1,0 +1,56 @@
+@font-face{
+    font-family: Catamaran-Medium;
+    src:url(Catamaran-Medium.ttf);
+}
+
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    direction:ltr;
+    font-family: Catamaran-Medium;
+    text-align: start;
+    cursor:default;
+    margin: 0;
+    > #__next{
+        width: 100%;
+        height: 100%;
+    }
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: Catamaran-Medium;
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+    }
+    a::-moz-focus-inner,
+    input::-moz-focus-inner,
+    button::-moz-focus-inner{
+        border:0;
+        padding:0;
+    }
+    a{
+        text-decoration:none;
+        outline:none;
+    }
+    input, button, select{
+        border:none;
+        outline:none;
+    }
+    input[type="button"], button, select{
+        cursor: pointer;
+    }
+    input:required,
+    input:invalid{
+        box-shadow:none;
+    }
+    input[type="button"], button{
+        font-size: 1rem;
+        padding:0;
+        background:none;
+    }
+}

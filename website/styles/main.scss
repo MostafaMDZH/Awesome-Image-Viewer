@@ -1,0 +1,224 @@
+@import "classes";
+
+@font-face{
+    font-family: JetBrainsMono-Regular;
+    src:url(JetBrainsMono-Regular.ttf);
+}
+
+#window{
+    width: 100%;
+    height: 100%;
+    background-color: #fd0;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @extend .thinScrollbar_dark;
+    overflow: auto;
+
+    //header:
+    > #header{
+        width: calc(100% - 20px);
+        max-width: 1400px;
+        height: 0;
+        padding: 0 50px;
+        background-color: #fd0;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: space-between;
+        > .headerLink{
+            font-size: 1.05rem;
+            color: #222;
+            padding: 3px 2px;
+        }
+        > #coffee:after{
+            content: ")";
+            opacity: 0;
+            transition: opacity 200ms ease;
+        }
+        > #coffee:hover:after,
+        > #coffee:focus:after{
+            opacity: 1;
+        }
+    }
+    > .container{
+        width: 100%;
+        max-width: 900px;
+        padding: 70px 20px 50px 20px;
+        margin-left: -80px;
+        display: flex;
+        flex-direction: column;
+        > #main{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 140px;
+
+            //navigation:
+            > #navigation{
+                height: 100%;
+                > #navigationWrapper{
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    top: 20%;
+                    > .navLink{
+                        font-size: 1.05rem;
+                        color: #222;
+                        padding: 1px;
+                    }
+                    > .navLink:before{
+                        content: ">";
+                        margin-right: 6px;
+                        opacity: 0;
+                        transition: opacity 70ms ease;
+                    }
+                    > .navLink:hover:before,
+                    > .navLink:focus:before{
+                        opacity: 1;
+                    }
+                }
+            }
+
+            //content:
+            > #content{
+                position: relative;
+                flex: 1;
+                max-width: 635px;
+                display: flex;
+                flex-direction: column;
+                > #github{
+                    padding: 5px;
+                    font-size: 1.05rem;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    color: #222;
+                    display: none;
+                }
+                > #awesome{
+                    font-size: 1.3rem;
+                    > a{color: #222;}
+                }
+                > #name-versionWrapper{
+                    margin: 24px 0 27px 0;
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 30px;
+                    > #appName{
+                        font-size: 4.3rem;
+                        line-height: 3.5rem;
+                        > a{color: #222;}
+                    }
+                    > #version{
+                        font-size: 1.05rem;
+                    }
+                }
+                > .sectionName{
+                    margin-top: 35px;
+                    font-size: 1.4rem;
+                    line-height: 3rem;
+                    > a{color: #222;}
+                }
+                > .sectionDescription{
+                    font-size: 1.05rem;
+                }
+                > #features{
+                    margin-top: 50px;
+                }
+                > .features{
+                    margin-top: 2px;
+                    margin-left: 25px;
+                    font-size: 1.05rem;
+                }
+                > .step{
+                    font-size: 1.05rem;
+                    > .bold{
+                        font-weight: bold;
+                    }
+                }
+                > .codeWrapper{
+                    width: 100%;
+                    margin: 10px 0 30px 0;
+                    padding: 15px 20px 15px 20px;
+                    *{
+                        font-family: JetBrainsMono-Regular;
+                        font-size: 0.91rem;
+                    }
+                    background-color: #222;
+                    border-radius: 7px;
+                    display: flex;
+                    flex-direction: column;
+                    color: #e8e8e8;
+                    > .comment{
+                        font-style: italic;
+                        color: #999;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                        > a{
+                            color: #999;
+                            text-decoration: underline;
+                        }
+                    }
+                    > .comment:first-child{
+                        margin-top: 0;
+                    }
+                    > .codeSection{
+                        display: flex;
+                        justify-content: space-between;
+                        text-align: left;
+                        line-height: 1.4rem;
+                        color: #e8e8e8;
+                        cursor: default;
+                        span{color: #f5d500;}
+                    }
+                    > .copyable,
+                    > .executable{
+                        cursor: pointer;
+                    }
+                    > .copyable::after  { content: 'copy'; }
+                    > .executable::after{ content: 'run';  }
+                    > .codeSection::after{
+                        padding-left: 10px;
+                        line-height: 1.5rem;
+                        font-style: italic;
+                        color: #888;
+                        opacity: 0;
+                        transition: opacity 150ms ease;
+                    }
+                    > .codeSection:hover::after,
+                    > .codeSection:focus::after{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+    }
+    
+    //footer:
+    > #footer{
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        > p{
+            font-size: 1.05rem;
+            width: fit-content;
+            text-align: center;
+            > a{
+                color: #222;
+                text-decoration: underline;
+            }
+        }
+        > #awesomeComponents{
+            display: none;
+        }
+    }
+    
+}
