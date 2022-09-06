@@ -1,0 +1,11 @@
+#npm:
+/node_modules
+
+#jest:
+/coverage
+
+#website:
+/website
+
+#other:
+todo.md
