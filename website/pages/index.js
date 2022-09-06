@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Snackbar from 'awesome-snackbar';
 import ImageViewer from 'awesome-image-viewer';
-import * as data from '../data/options';
+import editIcon from '../public/edit.svg'
+import deleteIcon from '../public/delete.svg'
 
 let hasShow = false;
 
@@ -22,6 +23,10 @@ export default function Main(){
     setTimeout(function(){
         if(hasShow) return;
         hasShow = true;
+        showSample();
+    }, 300);
+
+    const showSample = () => {
         new ImageViewer({
             images: [
                 {
@@ -39,14 +44,25 @@ export default function Main(){
                     thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
                     name: 'Adonis Vernalis'
                 }
+            ],
+            buttons: [
+                {
+                    name: 'Edit',
+                    iconSrc: editIcon.src
+                },
+                {
+                    name: 'Delete',
+                    iconSrc: deleteIcon.src,
+                    iconSize: '17px auto'
+                }
             ]
         });
-    }, 1000);
+    }
 
     
     //render:
     return (
-        <div id='window' style={{scrollBehavior:'smooth'}}>
+        <div id='window' style={{scrollBehavior:'smooth'}} onClick={()=>showSample()}>
 
             
 

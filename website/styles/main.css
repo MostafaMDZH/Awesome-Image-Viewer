@@ -1,0 +1,314 @@
+/*
+    Background:
+*/
+.transparentBackground {
+  transition: background-color 150ms;
+}
+
+.transparentBackground:enabled:active {
+  background-color: rgba(0, 0, 0, 0.035) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .transparentBackground:enabled:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+  }
+  .transparentBackground:enabled:focus {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+  }
+  .transparentBackground:enabled:active {
+    background-color: rgba(0, 0, 0, 0.07) !important;
+  }
+}
+.transparentBackground:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.darkTransparentBackground {
+  transition: background-color 200ms ease-in-out;
+}
+
+.darkTransparentBackground:enabled:active {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .darkTransparentBackground:enabled:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+  }
+  .darkTransparentBackground:enabled:focus {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  .darkTransparentBackground:enabled:active {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+.darkTransparentBackground:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/*
+    custom scrollbar
+*/
+.thinScrollbar_light::-webkit-scrollbar, .notTouchScreen ::-webkit-scrollbar, .notTouchScreen::-webkit-scrollbar, .thinScrollbar_dark::-webkit-scrollbar, #window::-webkit-scrollbar, .darkMode.notTouchScreen ::-webkit-scrollbar, .darkMode.notTouchScreen::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+.thinScrollbar_light::-webkit-scrollbar-track, .notTouchScreen ::-webkit-scrollbar-track, .notTouchScreen::-webkit-scrollbar-track, .thinScrollbar_dark::-webkit-scrollbar-track, #window::-webkit-scrollbar-track, .darkMode.notTouchScreen ::-webkit-scrollbar-track, .darkMode.notTouchScreen::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thinScrollbar_light::-webkit-scrollbar-thumb, .notTouchScreen ::-webkit-scrollbar-thumb, .notTouchScreen::-webkit-scrollbar-thumb, .thinScrollbar_dark::-webkit-scrollbar-thumb, #window::-webkit-scrollbar-thumb, .darkMode.notTouchScreen ::-webkit-scrollbar-thumb, .darkMode.notTouchScreen::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 20px;
+}
+
+.thinScrollbar_dark::-webkit-scrollbar-thumb, #window::-webkit-scrollbar-thumb, .darkMode.notTouchScreen ::-webkit-scrollbar-thumb, .darkMode.notTouchScreen::-webkit-scrollbar-thumb {
+  background: #222;
+}
+
+.ultraThinScrollbar_light::-webkit-scrollbar, .ultraThinScrollbar_dark::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.ultraThinScrollbar_light::-webkit-scrollbar-track, .ultraThinScrollbar_dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ultraThinScrollbar_light::-webkit-scrollbar-thumb, .ultraThinScrollbar_dark::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 20px;
+}
+
+.ultraThinScrollbar_dark::-webkit-scrollbar-thumb {
+  background: #8a8a8a;
+}
+
+@font-face {
+  font-family: JetBrainsMono-Regular;
+  src: url(JetBrainsMono-Regular.ttf);
+}
+#window {
+  width: 100%;
+  height: 100%;
+  background-color: #fd0;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+#window > #header {
+  width: calc(100% - 20px);
+  max-width: 1400px;
+  height: 0;
+  padding: 0 50px;
+  background-color: #fd0;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: space-between;
+}
+#window > #header > .headerLink {
+  font-size: 1.05rem;
+  color: #222;
+  padding: 3px 2px;
+}
+#window > #header > #coffee:after {
+  content: ")";
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+#window > #header > #coffee:hover:after,
+#window > #header > #coffee:focus:after {
+  opacity: 1;
+}
+#window > .container {
+  width: 100%;
+  max-width: 900px;
+  padding: 70px 20px 50px 20px;
+  margin-left: -80px;
+  display: flex;
+  flex-direction: column;
+}
+#window > .container > #main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 140px;
+}
+#window > .container > #main > #navigation {
+  height: 100%;
+}
+#window > .container > #main > #navigation > #navigationWrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 20%;
+}
+#window > .container > #main > #navigation > #navigationWrapper > .navLink {
+  font-size: 1.05rem;
+  color: #222;
+  padding: 1px;
+}
+#window > .container > #main > #navigation > #navigationWrapper > .navLink:before {
+  content: ">";
+  margin-right: 6px;
+  opacity: 0;
+  transition: opacity 70ms ease;
+}
+#window > .container > #main > #navigation > #navigationWrapper > .navLink:hover:before,
+#window > .container > #main > #navigation > #navigationWrapper > .navLink:focus:before {
+  opacity: 1;
+}
+#window > .container > #main > #content {
+  position: relative;
+  flex: 1;
+  max-width: 635px;
+  display: flex;
+  flex-direction: column;
+}
+#window > .container > #main > #content > #github {
+  padding: 5px;
+  font-size: 1.05rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #222;
+  display: none;
+}
+#window > .container > #main > #content > #awesome {
+  font-size: 1.3rem;
+}
+#window > .container > #main > #content > #awesome > a {
+  color: #222;
+}
+#window > .container > #main > #content > #name-versionWrapper {
+  margin: 24px 0 27px 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+}
+#window > .container > #main > #content > #name-versionWrapper > #appName {
+  font-size: 4.3rem;
+  line-height: 3.5rem;
+}
+#window > .container > #main > #content > #name-versionWrapper > #appName > a {
+  color: #222;
+}
+#window > .container > #main > #content > #name-versionWrapper > #version {
+  font-size: 1.05rem;
+}
+#window > .container > #main > #content > .sectionName {
+  margin-top: 35px;
+  font-size: 1.4rem;
+  line-height: 3rem;
+}
+#window > .container > #main > #content > .sectionName > a {
+  color: #222;
+}
+#window > .container > #main > #content > .sectionDescription {
+  font-size: 1.05rem;
+}
+#window > .container > #main > #content > #features {
+  margin-top: 50px;
+}
+#window > .container > #main > #content > .features {
+  margin-top: 2px;
+  margin-left: 25px;
+  font-size: 1.05rem;
+}
+#window > .container > #main > #content > .step {
+  font-size: 1.05rem;
+}
+#window > .container > #main > #content > .step > .bold {
+  font-weight: bold;
+}
+#window > .container > #main > #content > .codeWrapper {
+  width: 100%;
+  margin: 10px 0 30px 0;
+  padding: 15px 20px 15px 20px;
+  background-color: #222;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  color: #e8e8e8;
+}
+#window > .container > #main > #content > .codeWrapper * {
+  font-family: JetBrainsMono-Regular;
+  font-size: 0.91rem;
+}
+#window > .container > #main > #content > .codeWrapper > .comment {
+  font-style: italic;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+#window > .container > #main > #content > .codeWrapper > .comment > a {
+  color: #999;
+  text-decoration: underline;
+}
+#window > .container > #main > #content > .codeWrapper > .comment:first-child {
+  margin-top: 0;
+}
+#window > .container > #main > #content > .codeWrapper > .codeSection {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  line-height: 1.4rem;
+  color: #e8e8e8;
+  cursor: default;
+}
+#window > .container > #main > #content > .codeWrapper > .codeSection span {
+  color: #f5d500;
+}
+#window > .container > #main > #content > .codeWrapper > .copyable,
+#window > .container > #main > #content > .codeWrapper > .executable {
+  cursor: pointer;
+}
+#window > .container > #main > #content > .codeWrapper > .copyable::after {
+  content: "copy";
+}
+#window > .container > #main > #content > .codeWrapper > .executable::after {
+  content: "run";
+}
+#window > .container > #main > #content > .codeWrapper > .codeSection::after {
+  padding-left: 10px;
+  line-height: 1.5rem;
+  font-style: italic;
+  color: #888;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+#window > .container > #main > #content > .codeWrapper > .codeSection:hover::after,
+#window > .container > #main > #content > .codeWrapper > .codeSection:focus::after {
+  opacity: 1;
+}
+#window > #footer {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+#window > #footer > p {
+  font-size: 1.05rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+}
+#window > #footer > p > a {
+  color: #222;
+  text-decoration: underline;
+}
+#window > #footer > #awesomeComponents {
+  display: none;
+}/*# sourceMappingURL=main.css.map */
