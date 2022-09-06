@@ -52,7 +52,33 @@
      cursor: default;
 }
 
-//light transparent background:
+//dark transparent background:
+.darkTransparentBackground{
+    transition: background-color 50ms;
+}
+.darkTransparentBackground:enabled:active{
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+@media (hover: hover) and (pointer: fine){
+    .darkTransparentBackground{
+        transition: background-color 150ms;
+    }
+    .darkTransparentBackground:enabled:hover{
+        background-color: rgba(0, 0, 0, .2) !important;
+    }
+    .darkTransparentBackground:enabled:focus{
+        background-color: rgba(0, 0, 0, .3) !important;
+    }
+    .darkTransparentBackground:enabled:active{
+        background-color: rgba(0, 0, 0, .4) !important;
+    }
+}
+.darkTransparentBackground:disabled{
+     opacity: 0.5;
+     cursor: default;
+}
+
+//colored background:
 .coloredBackground{
     opacity: .8;
 }
