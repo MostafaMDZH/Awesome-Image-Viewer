@@ -1,0 +1,98 @@
+//scrollbar:
+@media (hover: hover) and (pointer: fine){
+
+    .thinScrollbar::-webkit-scrollbar{
+        width: 4px;
+        height: 4px;
+    }
+    .thinScrollbar::-webkit-scrollbar-track{
+        background: transparent;
+    }
+    .thinScrollbar::-webkit-scrollbar-thumb{
+        background: #bbb;
+        border-radius: 20px;
+    }
+
+    //dark mode:
+    .darkMode{
+        .thinScrollbar::-webkit-scrollbar-thumb{
+            background: #555;
+        }
+    }
+}
+
+.hiddenScrollbar::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+//light transparent background:
+.transparentBackground{
+    transition: background-color 50ms;
+}
+.transparentBackground:enabled:active{
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+@media (hover: hover) and (pointer: fine){
+    .transparentBackground{
+        transition: background-color 150ms;
+    }
+    .transparentBackground:enabled:hover{
+        background-color: rgba(0, 0, 0, 0.03) !important;
+    }
+    .transparentBackground:enabled:focus{
+        background-color: rgba(0, 0, 0, 0.04) !important;
+    }
+    .transparentBackground:enabled:active{
+        background-color: rgba(0, 0, 0, 0.08) !important;
+    }
+}
+.transparentBackground:disabled{
+     opacity: 0.5;
+     cursor: default;
+}
+
+//light transparent background:
+.coloredBackground{
+    opacity: .8;
+}
+.coloredBackground:enabled:active{
+    opacity: 1;
+}
+@media (hover: hover) and (pointer: fine){
+    .coloredBackground:enabled:hover{
+        opacity: .85;
+    }
+    .coloredBackground:enabled:focus{
+        opacity: .9;
+    }
+    .coloredBackground:enabled:active{
+        opacity: 1;
+    }
+}
+.coloredBackground:disabled{
+     opacity: 0.5;
+     cursor: default;
+}
+
+//dark:
+.transparentBackground_dark{
+    transition: background-color 50ms;
+}
+.transparentBackground_dark:enabled:active{
+    background-color: rgba(255, 255, 255, 0.10) !important;
+}
+@media (hover: hover) and (pointer: fine){
+    .transparentBackground_dark{
+        transition: background-color 150ms;
+    }
+    .transparentBackground_dark:enabled:hover{
+        background-color: rgba(255, 255, 255, 0.12) !important;
+    }
+    .transparentBackground_dark:enabled:focus{
+        background-color: rgba(255, 255, 255, 0.10) !important;
+    }
+    .transparentBackground_dark:enabled:active{
+        background-color: rgba(255, 255, 255, 0.07) !important;
+    }
+}
