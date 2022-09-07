@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "author": "Mostafa Mohammadzadeh",
   "license": "MIT",
-  "main": "src/viewer.js",
-  "types": "src/viewer.d.ts",
+  "main": "src/imageViewer.js",
+  "types": "src/imageViewer.d.ts",
   "scripts": {
     "test": "jest",
     "test-cov": "jest --coverage",
