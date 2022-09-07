@@ -48,12 +48,14 @@ export default function Main(){
             buttons: [
                 {
                     name: 'Edit',
-                    iconSrc: editIcon.src
+                    iconSrc: editIcon.src,
+                    onSelect: ()=>alert('Edit Selected')
                 },
                 {
                     name: 'Delete',
                     iconSrc: deleteIcon.src,
-                    iconSize: '17px auto'
+                    iconSize: '17px auto',
+                    onSelect: ()=>alert('Delete Selected')
                 }
             ]
         });

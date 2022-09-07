@@ -1,51 +1,95 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class ImageViewer {
+//custom types:
+type image = {
+    mainUrl: string;
+    thumbnailUrl: string;
+    description?: string;
+}
+type button = {
+  name: string;
+  iconSrc: string;
+  iconSize: string;
+  onSelect: () => void;
+}
+type constructorParameters = {
+    images: image[];
+    currentSelected?: number;
+    buttons?: button[];
+    showThumbnails?:  boolean;
+    style?: object;
+}
+
+export default class ImageViewer{
+
+    //object properties:
+    protected viewID:           number;
+    protected view:             HTMLElement;
+    protected images:           image[];
+    protected currentSelected?: number;
+    protected buttons?:         button[];
+    protected showThumbnails?:  boolean;
+    protected style?:           object;
+
     //constructor:
-    constructor(parameters) {
+    constructor(parameters:constructorParameters){
+
         //append CSS styles to DOM:
         // ImageViewer.appendCSS();//comment at dev mode
+
         //the view:
         this.viewID = ImageViewer.generateViewID();
-        let view = ImageViewer.getHtml(this.viewID);
+        const view  = ImageViewer.getHtml(this.viewID);
         document.body.appendChild(view);
-        this.view = document.getElementById(this.viewID.toString()) || document.createElement('div');
+        this.view   = document.getElementById(this.viewID.toString()) || document.createElement('div');
+
         //set properties:
-        this.images = parameters.images;
+        this.images          = parameters.images;
         this.currentSelected = parameters.currentSelected;
-        this.buttons = parameters.buttons;
-        this.showThumbnails = parameters.showThumbnails;
+        this.buttons         = parameters.buttons;
+        this.showThumbnails  = parameters.showThumbnails;
+
         //show images:
         this.showImages();
+
         //show toolbar:
         this.showToolbar();
+
+
+
+
+        
         //set style:
         this.setStyle(parameters.style);
+
         //hide events:
         this.addEventToHide();
+        
         //finally show:
         this.show();
-    }
+
+	}
+
     //appendCSS:
-    static appendCSS() {
-        if (document.getElementById('imageViewer-style') === null) {
-            let head = document.head || document.getElementsByTagName('head')[0];
-            let style = document.createElement('style');
-            style.id = 'imageViewer-style';
+    protected static appendCSS():void{
+        if(document.getElementById('imageViewer-style') === null){
+            const head  = document.head || document.getElementsByTagName('head')[0];
+            const style = document.createElement('style');
+            style.id  = 'imageViewer-style';
             head.appendChild(style);
             style.appendChild(document.createTextNode(Style));
         }
     }
+
     //generateViewID:
-    static generateViewID() {
-        let id = Math.floor(Math.random() * 1000000000) + 100000000;
-        let element = document.getElementById(id.toString());
-        if (element === null)
+    protected static generateViewID():number{
+		const id = Math.floor(Math.random() * 1000000000) + 100000000;
+        const element = document.getElementById(id.toString());
+        if(element === null)
             return id;
         return ImageViewer.generateViewID();
-    }
+	}
+
     //getHtml:
-    static getHtml(viewID) {
+    protected static getHtml(viewID:number):ChildNode{
         const html = `
             <div class="imageViewer" id="${viewID}">
                 <div class="shadow"></div>
@@ -76,9 +120,10 @@ class ImageViewer {
             </div>
         `;
         return ImageViewer.getChildNode(html);
-    }
+	}
+
     //getThumbnailHtml:
-    static getImageHtml(imageSrc) {
+    protected static getImageHtml(imageSrc:string):ChildNode{
         const html = `
             <div class="imageContainer">
                 <img class="image" src="${imageSrc}"/>
@@ -86,8 +131,9 @@ class ImageViewer {
         `;
         return ImageViewer.getChildNode(html);
     }
+
     //getButtonHtml:
-    static getButtonHtml(name, iconSrc, iconSize) {
+    protected static getButtonHtml(name:string, iconSrc:string, iconSize:string):ChildNode{
         const html = `
             <input
                 type="button"
@@ -97,8 +143,9 @@ class ImageViewer {
             />`;
         return ImageViewer.getChildNode(html);
     }
+
     //getThumbnailHtml:
-    static getThumbnailHtml(number, name, imageSrc) {
+    protected static getThumbnailHtml(number:number, name:string, imageSrc:string):ChildNode{
         const html = `
             <img
                 class="thumbnail"
@@ -108,56 +155,67 @@ class ImageViewer {
             />`;
         return ImageViewer.getChildNode(html);
     }
+
     //getChildNode:
-    static getChildNode(html) {
-        let div = document.createElement('div');
+    protected static getChildNode(html:string):ChildNode{
+        const div = document.createElement('div');
         div.innerHTML = html.trim();
         return div.firstChild || div;
     }
+    
     //showImages:
-    showImages() {
-        let imagesWrapper = this.view.getElementsByClassName('imagesWrapper')[0];
+    protected showImages(){
+        const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         this.images.forEach((image) => {
-            let imageHtml = ImageViewer.getImageHtml(image.mainUrl);
+            const imageHtml = ImageViewer.getImageHtml(image.mainUrl);
             imagesWrapper.appendChild(imageHtml);
         });
     }
+    
     //showToolbar:
-    showToolbar() {
-        var _a;
-        const toolbar = this.view.getElementsByClassName('toolbar')[0];
-        (_a = this.buttons) === null || _a === void 0 ? void 0 : _a.forEach((button) => {
+    protected showToolbar(){
+        const toolbar = <HTMLElement> this.view.getElementsByClassName('toolbar')[0];
+        this.buttons?.forEach((button) => {
             const buttonHtml = ImageViewer.getButtonHtml(button.name, button.iconSrc, button.iconSize);
             toolbar.appendChild(buttonHtml);
+            buttonHtml.addEventListener('click', (event) => {
+                event.stopImmediatePropagation();
+                if(typeof button.onSelect !== undefined)
+                    button.onSelect();
+            })
         });
     }
+
+
+
+
+
+    
+
     //setStyle:
-    setStyle(style) {
-        if (style === undefined)
-            return;
+    public setStyle(style?:object):void{
+        if(style === undefined) return;
         this.style = style;
-        for (const [className, style] of Object.entries(this.style)) {
+        for(const [className, style] of Object.entries(this.style)){
             const elements = this.view.querySelectorAll('.' + className);
             elements.forEach(element => {
-                for (const property of style)
-                    element.style.setProperty(property[0], property[1]);
+                for(const property of style)
+                    (<HTMLElement> element).style.setProperty(property[0], property[1]);
             });
         }
     }
+
     //show:
-    show() {
+    protected show():void{
         const thisView = this;
         setTimeout(() => {
             thisView.view.classList.add('visible');
-        }, 50); //slight delay between adding to DOM and running css animation
+        }, 50);//slight delay between adding to DOM and running css animation
     }
+
     //addEventToHide:
-    addEventToHide() {
-        const thisView = this;
-        const closeButton = this.view.getElementsByClassName('closeButton')[0];
-        closeButton.addEventListener('click', e => {
-            thisView.hide();
-        });
+    protected addEventToHide(){
+        const thisView = this; //close button acts from its parent
         const container = this.view.getElementsByClassName('container')[0];
         container.addEventListener('click', e => {
             thisView.hide();
@@ -167,16 +225,18 @@ class ImageViewer {
             thisView.hide();
         });
     }
+
     //hide:
-    hide() {
+    protected hide():void{
         this.view.classList.remove('visible');
         const thisView = this;
         setTimeout(() => {
             thisView.view.remove();
-        }, 500); //long enough to make sure that it is hidden
+        }, 500);//long enough to make sure that it is hidden
     }
+
 }
-exports.default = ImageViewer;
+
 const Style = `
 
 `;
