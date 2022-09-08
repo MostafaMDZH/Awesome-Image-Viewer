@@ -1,6 +1,6 @@
 declare type image = {
     mainUrl: string;
-    thumbnailUrl: string;
+    thumbnailUrl?: string;
     description?: string;
 };
 declare type button = {
@@ -20,9 +20,9 @@ export default class ImageViewer {
     protected viewID: number;
     protected view: HTMLElement;
     protected images: image[];
-    protected currentSelected?: number;
+    protected currentSelected: number;
     protected buttons?: button[];
-    protected showThumbnails?: boolean;
+    protected showThumbnails: boolean;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
@@ -30,10 +30,17 @@ export default class ImageViewer {
     protected static getHtml(viewID: number): ChildNode;
     protected static getImageHtml(imageSrc: string): ChildNode;
     protected static getButtonHtml(name: string, iconSrc: string, iconSize: string): ChildNode;
-    protected static getThumbnailHtml(number: number, name: string, imageSrc: string): ChildNode;
+    protected static getThumbnailHtml(index: number, imageSrc: string, title?: string): ChildNode;
     protected static getChildNode(html: string): ChildNode;
     protected showImages(): void;
     protected showToolbar(): void;
+    protected addEventToArrows(): void;
+    protected echoThumbnails(): void;
+    protected selectImage(index: number): void;
+    protected scrollToImage(index: number): void;
+    protected setDescription(text?: string): void;
+    protected setThumbnail(index: number): void;
+    protected scrollThumbnail(index: number): void;
     setStyle(style?: object): void;
     protected show(): void;
     protected addEventToHide(): void;
