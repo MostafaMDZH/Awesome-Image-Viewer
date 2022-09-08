@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Snackbar from 'awesome-snackbar';
-import ImageViewer from 'awesome-image-viewer';
+import Cookies from 'universal-cookie'
+import Snackbar from 'awesome-snackbar'
+import ImageViewer from 'awesome-image-viewer'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
 
+let isWelcomeSbShow = false;
 let hasShow = false;
 
 export default function Main(){
@@ -18,7 +20,26 @@ export default function Main(){
             new Snackbar('cannot copy 👎');
         });
     }
-
+    
+    //welcome snackbar:
+    const cookies = new Cookies();
+    setTimeout(() => {
+        if(isWelcomeSbShow) return;
+        if(cookies.get('WelcomeSB') !== undefined) return;
+        isWelcomeSbShow = true;
+        new Snackbar('Welcome to Awesome Image Viewer! 👋', {
+            position: 'top-center',
+            timeout: 2000,
+            afterHide: () => {
+                new Snackbar('Click on code sections to run the demo', {
+                    position: 'top-center',
+                    timeout: 0,
+                    actionText: 'Got it',
+                    onAction: () => cookies.set('WelcomeSB', 'yes', { path: '/', maxAge: 1000*24*60*60 })
+                });
+            }
+        });
+    }, 2000);
 
     setTimeout(function(){
         if(hasShow) return;
@@ -32,17 +53,116 @@ export default function Main(){
                 {
                     mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
                     thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    name: 'Balloon'
+                    description: 'Balloon'
                 },
                 {
                     mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
                     thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    name: 'Bmx'
+                    description: 'Bmx'
                 },
                 {
                     mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
                     thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    name: 'Adonis Vernalis'
+                    description: 'Adonis Vernalis'
+                }
+                ,{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
+                },{
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
+                    description: 'Balloon'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
+                    description: 'Bmx'
+                },
+                {
+                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
+                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
+                    description: 'Adonis Vernalis'
                 }
             ],
             buttons: [
@@ -54,7 +174,7 @@ export default function Main(){
                 {
                     name: 'Delete',
                     iconSrc: deleteIcon.src,
-                    iconSize: '17px auto',
+                    iconSize: '18px auto',
                     onSelect: ()=>alert('Delete Selected')
                 }
             ]
