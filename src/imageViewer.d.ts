@@ -35,8 +35,8 @@ export default class ImageViewer {
     protected static getChildNode(html: string): ChildNode;
     protected showImages(): void;
     protected showToolbar(): void;
-    protected addEventToArrows(): void;
     protected echoThumbnails(): void;
+    protected addEventToArrows(): void;
     protected selectImage(index: number): void;
     protected loadImage(index: number): void;
     protected scrollToImage(index: number): void;

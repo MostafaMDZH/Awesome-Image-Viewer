@@ -55,11 +55,11 @@ export default class ImageViewer{
         //show toolbar:
         this.showToolbar();
 
-        //arrow event:
-        this.addEventToArrows();
-
         //echo thumbnails:
         this.echoThumbnails();
+
+        //arrow event:
+        this.addEventToArrows();
 
         //select the image:
         this.selectImage(this.currentSelected);
@@ -159,7 +159,11 @@ export default class ImageViewer{
 
     //getThumbnailHtml:
     protected static getThumbnailHtml(index:number, imageSrc:string, title?:string):ChildNode{
-        const html = `<img class="thumbnail" data-index="${index}" src="${imageSrc}" title="${title}"/>`;
+        const html = `
+            <button class="thumbnailContainer">
+                <img class="thumbnail" data-index="${index}" src="${imageSrc}" title="${title}"/>
+            </button>
+        `;
         return ImageViewer.getChildNode(html);
     }
 
@@ -192,34 +196,6 @@ export default class ImageViewer{
             })
         });
     }
-
-    //addEventToArrows:
-    protected addEventToArrows(){
-        const leftButton = <HTMLElement> this.view.getElementsByClassName('leftButton')[0];
-        leftButton.addEventListener('click', e => {
-            e.stopPropagation();
-            this.selectImage(this.currentSelected - 1);
-        });
-        const rightButton = <HTMLElement> this.view.getElementsByClassName('rightButton')[0];
-        rightButton.addEventListener('click', e => {
-            e.stopPropagation();
-            this.selectImage(this.currentSelected + 1);
-        });
-        //navigation with arrow buttons:
-        const imageContainers = this.view.querySelectorAll('.imageContainer');
-        const firstContainer = <HTMLElement> imageContainers[0];
-        setTimeout(() => firstContainer.focus(), 100);
-        imageContainers.forEach(container => {
-            container.addEventListener('keydown', e => {
-                e.preventDefault();
-                const event  = <KeyboardEvent> e;
-                if(event.key === 'ArrowLeft')
-                    this.selectImage(this.currentSelected - 1);
-                if(event.key === 'ArrowRight')
-                    this.selectImage(this.currentSelected + 1);
-                });
-        });
-    }
     
     //echoThumbnails:
     protected echoThumbnails(){
@@ -236,6 +212,34 @@ export default class ImageViewer{
                 this.selectImage(parseInt(index ?? '0'));
             });
             i++;
+        });
+    }
+
+    //addEventToArrows:
+    protected addEventToArrows(){
+        const leftButton = <HTMLElement> this.view.getElementsByClassName('leftButton')[0];
+        leftButton.addEventListener('click', e => {
+            e.stopPropagation();
+            this.selectImage(this.currentSelected - 1);
+        });
+        const rightButton = <HTMLElement> this.view.getElementsByClassName('rightButton')[0];
+        rightButton.addEventListener('click', e => {
+            e.stopPropagation();
+            this.selectImage(this.currentSelected + 1);
+        });
+        //navigation with arrow buttons:
+        const imageContainers = this.view.querySelectorAll('.imageContainer, .arrowButton, .thumbnailContainer');
+        const firstContainer = <HTMLElement> imageContainers[0];
+        setTimeout(() => firstContainer.focus(), 100);
+        imageContainers.forEach(container => {
+            container.addEventListener('keydown', e => {
+                e.preventDefault();
+                const event  = <KeyboardEvent> e;
+                if(event.key === 'ArrowLeft')
+                    this.selectImage(this.currentSelected - 1);
+                if(event.key === 'ArrowRight')
+                    this.selectImage(this.currentSelected + 1);
+                });
         });
     }
 

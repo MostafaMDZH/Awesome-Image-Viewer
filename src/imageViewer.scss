@@ -176,22 +176,21 @@
                 max-width: 100%;
                 padding-left: 10px;
                 padding-right: 10px;
-                height: 77px;
+                height: 80px;
                 overflow-x: auto;
                 display: flex;
                 gap: 12px;
-                > .thumbnail{
-                    width: auto;
-                    height: 100%;
-                    // border-top: solid 5px transparent;
-                    // border-bottom: solid 5px transparent;
-                    border: solid 3px transparent;
-                    border-radius: 3px;
-                    cursor: pointer;
-                }
-                > .selected{
-                    // border: none;
-                    border-color: white;
+                > .thumbnailContainer{
+                    > .thumbnail{
+                        width: auto;
+                        height: calc(100% - 10px);
+                        border: solid 3px transparent;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+                    > .selected{
+                        border-color: white;
+                    }
                 }
             }
         }
