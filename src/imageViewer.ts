@@ -138,9 +138,9 @@ export default class ImageViewer{
     //getThumbnailHtml:
     protected static getImageHtml(imageSrc:string):ChildNode{
         const html = `
-            <div class="imageContainer" data-url="${imageSrc}">
+            <button class="imageContainer" data-url="${imageSrc}">
                 <img class="image"/>
-            </div>
+            </button>
         `;
         return ImageViewer.getChildNode(html);
     }
@@ -204,6 +204,20 @@ export default class ImageViewer{
         rightButton.addEventListener('click', e => {
             e.stopPropagation();
             this.selectImage(this.currentSelected + 1);
+        });
+        //navigation with arrow buttons:
+        const imageContainers = this.view.querySelectorAll('.imageContainer');
+        const firstContainer = <HTMLElement> imageContainers[0];
+        setTimeout(() => firstContainer.focus(), 100);
+        imageContainers.forEach(container => {
+            container.addEventListener('keydown', e => {
+                e.preventDefault();
+                const event  = <KeyboardEvent> e;
+                if(event.key === 'ArrowLeft')
+                    this.selectImage(this.currentSelected - 1);
+                if(event.key === 'ArrowRight')
+                    this.selectImage(this.currentSelected + 1);
+                });
         });
     }
     
@@ -291,7 +305,6 @@ export default class ImageViewer{
         let minY = 50; //min y swipe for vertical swipe
         let maxY = 60; //max y difference for horizontal swipe
         let direction = '';
-        // const imagesSlider = <HTMLElement> this.view.getElementsByClassName('imagesSlider')[0];
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         let wrapperInfo = imagesWrapper.getBoundingClientRect();
         let scrollPosition = wrapperInfo.left;
