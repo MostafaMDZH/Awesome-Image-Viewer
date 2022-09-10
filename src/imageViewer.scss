@@ -255,3 +255,13 @@
         }
     }
 }
+
+@media (orientation: landscape) and (max-height: 450px){
+    .imageViewer{
+        > .container{
+            > .footer{
+                bottom: 10px;
+            }
+        }
+    }
+}
