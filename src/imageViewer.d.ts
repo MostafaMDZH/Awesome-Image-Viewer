@@ -23,6 +23,7 @@ export default class ImageViewer {
     protected currentSelected: number;
     protected buttons?: button[];
     protected showThumbnails: boolean;
+    protected isHudHide: boolean;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
@@ -43,6 +44,7 @@ export default class ImageViewer {
     protected setThumbnail(index: number): void;
     protected scrollThumbnail(index: number): void;
     protected addEventToSwipe(onSwipe: (direction: string) => void, notSwiped: () => void): void;
+    protected addEventToHudHide(): void;
     setStyle(style?: object): void;
     protected show(): void;
     protected addEventToHide(): void;

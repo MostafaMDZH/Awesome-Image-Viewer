@@ -16,6 +16,7 @@ class ImageViewer {
         this.currentSelected = (_a = parameters.currentSelected) !== null && _a !== void 0 ? _a : 0;
         this.buttons = parameters.buttons;
         this.showThumbnails = (_b = parameters.showThumbnails) !== null && _b !== void 0 ? _b : true;
+        this.isHudHide = false;
         //show images:
         this.showImages();
         //show toolbar:
@@ -37,6 +38,8 @@ class ImageViewer {
                     break;
             }
         }, () => this.selectImage(this.currentSelected));
+        //hud hide event:
+        this.addEventToHudHide();
         //set style:
         this.setStyle(parameters.style);
         //hide events:
@@ -281,6 +284,26 @@ class ImageViewer {
             direction = '';
         });
     }
+    //addEventToHudHide:
+    addEventToHudHide() {
+        const thisView = this;
+        const images = this.view.querySelectorAll('.image');
+        images.forEach(image => {
+            image.addEventListener('click', e => {
+                e.stopPropagation();
+                if (this.isHudHide) {
+                    this.view.classList.remove('hudDisplay');
+                    // this.view.classList.remove('hudOpacity');
+                    setTimeout(() => { thisView.view.classList.remove('hudOpacity'); }, 50);
+                }
+                else {
+                    this.view.classList.add('hudOpacity');
+                    setTimeout(() => { thisView.view.classList.add('hudDisplay'); }, 200);
+                }
+                this.isHudHide = !this.isHudHide;
+            });
+        });
+    }
     //setStyle:
     setStyle(style) {
         if (style === undefined)
@@ -303,12 +326,6 @@ class ImageViewer {
     }
     //addEventToHide:
     addEventToHide() {
-        const images = this.view.querySelectorAll('.image');
-        images.forEach(image => {
-            image.addEventListener('click', e => {
-                e.stopPropagation();
-            });
-        });
         const footer = this.view.getElementsByClassName('footer')[0];
         footer.addEventListener('click', e => {
             e.stopPropagation();

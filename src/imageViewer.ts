@@ -27,6 +27,7 @@ export default class ImageViewer{
     protected currentSelected:  number;
     protected buttons?:         button[];
     protected showThumbnails:   boolean;
+    protected isHudHide:        boolean;
     protected style?:           object;
 
     //constructor:
@@ -46,6 +47,7 @@ export default class ImageViewer{
         this.currentSelected = parameters.currentSelected ?? 0;
         this.buttons         = parameters.buttons;
         this.showThumbnails  = parameters.showThumbnails ?? true;
+        this.isHudHide       = false;
 
         //show images:
         this.showImages();
@@ -74,6 +76,9 @@ export default class ImageViewer{
             }
         }, () => this.selectImage(this.currentSelected));
         
+        //hud hide event:
+        this.addEventToHudHide();
+
         //set style:
         this.setStyle(parameters.style);
 
@@ -86,7 +91,7 @@ export default class ImageViewer{
 	}
 
     //appendCSS:
-    protected static appendCSS():void{
+    protected static appendCSS(){
         if(document.getElementById('imageViewer-style') === null){
             const head  = document.head || document.getElementsByTagName('head')[0];
             const style = document.createElement('style');
@@ -163,7 +168,7 @@ export default class ImageViewer{
     }
     
     //showImages:
-    protected showImages():void{
+    protected showImages(){
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         this.images.forEach((image) => {
             const imageHtml = ImageViewer.getImageHtml(image.mainUrl);
@@ -172,7 +177,7 @@ export default class ImageViewer{
     }
     
     //showToolbar:
-    protected showToolbar():void{
+    protected showToolbar(){
         const toolbar = <HTMLElement> this.view.getElementsByClassName('toolbar')[0];
         this.buttons?.forEach((button) => {
             const buttonHtml = ImageViewer.getButtonHtml(button.name, button.iconSrc, button.iconSize);
@@ -186,7 +191,7 @@ export default class ImageViewer{
     }
 
     //addEventToArrows:
-    protected addEventToArrows():void{
+    protected addEventToArrows(){
         const leftButton = <HTMLElement> this.view.getElementsByClassName('leftButton')[0];
         leftButton.addEventListener('click', e => {
             e.stopPropagation();
@@ -200,7 +205,7 @@ export default class ImageViewer{
     }
     
     //echoThumbnails:
-    protected echoThumbnails():void{
+    protected echoThumbnails(){
         if(!this.showThumbnails || this.images.length <= 0) return;
         const thumbnailsWrapper = <HTMLElement> this.view.getElementsByClassName('thumbnailsWrapper')[0];
         let i = 0;
@@ -218,7 +223,7 @@ export default class ImageViewer{
     }
 
     //selectImage:
-    protected selectImage(index:number):void{
+    protected selectImage(index:number){
         if(index < 0 || index > this.images.length - 1) return;
         this.currentSelected = index;
         this.loadImage(index-1);
@@ -230,7 +235,7 @@ export default class ImageViewer{
     }
 
     //loadImage:
-    protected loadImage(index:number):void{
+    protected loadImage(index:number){
         if(index < 0 || index > this.images.length - 1) return;
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         const imageContainers = imagesWrapper.children;
@@ -250,13 +255,13 @@ export default class ImageViewer{
     }
 
     //setDescription:
-    protected setDescription(text?:string):void{
+    protected setDescription(text?:string){
         const description = <HTMLElement> this.view.getElementsByClassName('description')[0];
         description.innerHTML = text || '';
     }
 
     //setThumbnail:
-    protected setThumbnail(index:number):void{
+    protected setThumbnail(index:number){
         const thumbnails = this.view.querySelectorAll('.thumbnail');
         thumbnails.forEach(th => {
             th.classList.remove('selected');
@@ -276,10 +281,7 @@ export default class ImageViewer{
     }
 
     //onSwipe:
-    protected addEventToSwipe(
-            onSwipe:(direction:string)=>void,
-            notSwiped:()=>void
-            ){
+    protected addEventToSwipe(onSwipe:(direction:string)=>void, notSwiped:()=>void){
         let swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
         let minX = 30; //min x swipe for horizontal swipe
         let maxX = 30; //max x difference for vertical swipe
@@ -335,8 +337,28 @@ export default class ImageViewer{
         });
     }
 
+    //addEventToHudHide:
+    protected addEventToHudHide(){
+        const thisView = this;
+        const images = this.view.querySelectorAll('.image');
+        images.forEach(image => {
+            image.addEventListener('click', e => {
+                e.stopPropagation();
+                if(this.isHudHide){
+                    this.view.classList.remove('hudDisplay');
+                    // this.view.classList.remove('hudOpacity');
+                    setTimeout(()=>{thisView.view.classList.remove('hudOpacity')}, 50);
+                }else{
+                    this.view.classList.add('hudOpacity');
+                    setTimeout(()=>{thisView.view.classList.add('hudDisplay')}, 200);
+                }
+                this.isHudHide = !this.isHudHide;
+            });
+        });
+    }
+
     //setStyle:
-    public setStyle(style?:object):void{
+    public setStyle(style?:object){
         if(style === undefined) return;
         this.style = style;
         for(const [className, style] of Object.entries(this.style)){
@@ -349,7 +371,7 @@ export default class ImageViewer{
     }
 
     //show:
-    protected show():void{
+    protected show(){
         const thisView = this;
         setTimeout(() => {
             thisView.view.classList.add('visible');
@@ -358,12 +380,6 @@ export default class ImageViewer{
 
     //addEventToHide:
     protected addEventToHide(){//close button acts from its parent
-        const images = this.view.querySelectorAll('.image');
-        images.forEach(image => {
-            image.addEventListener('click', e => {
-                e.stopPropagation();
-            });
-        });
         const footer = this.view.getElementsByClassName('footer')[0];
         footer.addEventListener('click', e => {
             e.stopPropagation();
@@ -379,7 +395,7 @@ export default class ImageViewer{
     }
 
     //hide:
-    protected hide():void{
+    protected hide(){
         this.view.classList.remove('visible');
         const thisView = this;
         setTimeout(() => {

@@ -53,6 +53,9 @@
         position: absolute;
         top: 0;
         left: 0;
+        > *{
+            transition: opacity 200ms ease-in-out;
+        }
         > .imagesWrapper{
             width: 100%;
             height: 100%;
@@ -188,6 +191,28 @@
                     border-color: white;
                 }
             }
+        }
+    }
+}
+
+.imageViewer.hudOpacity{
+    > .container{
+        > *{
+            opacity: 0;
+        }
+        > .imagesWrapper{
+            opacity: 1;
+        }
+    }
+}
+
+.imageViewer.hudDisplay{
+    > .container{
+        > *{
+            display: none;
+        }
+        > .imagesWrapper{
+            display: flex;
         }
     }
 }
