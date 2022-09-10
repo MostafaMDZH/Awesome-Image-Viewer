@@ -40,6 +40,8 @@ class ImageViewer {
         }, () => this.selectImage(this.currentSelected));
         //hud hide event:
         this.addEventToHudHide();
+        //addEventToWindowResize:
+        this.addEventToWindowResize();
         //set style:
         this.setStyle(parameters.style);
         //hide events:
@@ -302,6 +304,13 @@ class ImageViewer {
                 }
                 this.isHudHide = !this.isHudHide;
             });
+        });
+    }
+    //addEventToWindowResize:
+    addEventToWindowResize() {
+        window.addEventListener('resize', () => {
+            console.log('resize');
+            this.selectImage(this.currentSelected);
         });
     }
     //setStyle:

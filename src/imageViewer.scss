@@ -121,9 +121,8 @@
             @extend .darkTransparentBackground;
             width: 80px;
             height: calc(100% - 300px);
+            min-height: 100px;
             max-height: 160px;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
             display: flex;
             color: #aaa;
             justify-content: center;
@@ -138,13 +137,17 @@
                 justify-content: center;
                 align-items: center;
             }
-        }.hide{
-            //todo
-            // background-image: none !important;
-            // cursor: none;
         }
-        > .leftButton{left: 0;}
-        > .rightButton{right: 0;}
+        > .leftButton{
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            left: 0;
+        }
+        > .rightButton{
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            right: 0;
+        }
 
         //footer:
         > .footer{
@@ -226,76 +229,29 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //responsive:
-// @media (orientation: portrait){
-//     .ImageLoader{
-//         > #toolBar{
-//             width: auto;
-//             height: 50px;
-//             > #closeButton,
-//             > #editButton,
-//             > #deleteButton{
-//                 width: 50px;
-//                 height: 100%;
-//                 margin-bottom: 0;
-//                 margin-left: 5px;
-//             }
-//         }
-//     }
-// }
-
-// @media only screen and (max-width: 1000px){
-//     .ImageLoader{
-//         > .arrowButton{
-//             width: 85px;
-//         }
-//     }
-// }
-
-// @media only screen and (max-width: 700px){
-//     .ImageLoader{
-//         > .arrowButton{
-//             width: 70px;
-//         }
-//     }
-// }
-
-// @media only screen and (max-width: 550px){
-//     .ImageLoader{
-//         > .arrowButton{
-//             width: 60px;
-//         }
-//     }
-// }
-
-// @media only screen and (max-height: 650px){
-//     .ImageLoader{
-//         > #imageFooter{
-//             transform: translate(-50%, -6px);
-//         }
-//     }
-// }
-
-// @media only screen and (max-height: 550px){
-//     .ImageLoader{
-//         > #imageFooter{
-//             transform: translate(-50%, -3px);
-//         }
-//     }
-// }
+@media (orientation: landscape) or (max-width: 450px){
+    .imageViewer{
+        > .container{
+            > .toolbar{
+                width: auto;
+                height: 50px;
+                flex-direction: row-reverse;
+                > .closeButton{
+                    width: 50px;
+                    height: 100%;
+                }
+                > .customButton{
+                    width: 50px;
+                    height: 100%;
+                    border-top-left-radius: 0;
+                    border-bottom-right-radius: 5px;
+                }
+            }
+            > .arrowButton{
+                @extend .darkTransparentBackground;
+                width: 65px;
+            }
+        }
+    }
+}

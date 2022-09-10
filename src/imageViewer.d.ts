@@ -45,6 +45,7 @@ export default class ImageViewer {
     protected scrollThumbnail(index: number): void;
     protected addEventToSwipe(onSwipe: (direction: string) => void, notSwiped: () => void): void;
     protected addEventToHudHide(): void;
+    protected addEventToWindowResize(): void;
     setStyle(style?: object): void;
     protected show(): void;
     protected addEventToHide(): void;

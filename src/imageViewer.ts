@@ -79,6 +79,9 @@ export default class ImageViewer{
         //hud hide event:
         this.addEventToHudHide();
 
+        //addEventToWindowResize:
+        this.addEventToWindowResize();
+
         //set style:
         this.setStyle(parameters.style);
 
@@ -354,6 +357,14 @@ export default class ImageViewer{
                 }
                 this.isHudHide = !this.isHudHide;
             });
+        });
+    }
+
+    //addEventToWindowResize:
+    protected addEventToWindowResize(){
+        window.addEventListener('resize', () => {
+            console.log('resize');
+            this.selectImage(this.currentSelected);
         });
     }
 
