@@ -288,19 +288,17 @@ class ImageViewer {
     }
     //addEventToHudHide:
     addEventToHudHide() {
-        const thisView = this;
         const images = this.view.querySelectorAll('.image');
         images.forEach(image => {
             image.addEventListener('click', e => {
                 e.stopPropagation();
                 if (this.isHudHide) {
                     this.view.classList.remove('hudDisplay');
-                    // this.view.classList.remove('hudOpacity');
-                    setTimeout(() => { thisView.view.classList.remove('hudOpacity'); }, 50);
+                    setTimeout(() => this.view.classList.remove('hudOpacity'), 50);
                 }
                 else {
                     this.view.classList.add('hudOpacity');
-                    setTimeout(() => { thisView.view.classList.add('hudDisplay'); }, 200);
+                    setTimeout(() => this.view.classList.add('hudDisplay'), 200);
                 }
                 this.isHudHide = !this.isHudHide;
             });
@@ -309,7 +307,6 @@ class ImageViewer {
     //addEventToWindowResize:
     addEventToWindowResize() {
         window.addEventListener('resize', () => {
-            console.log('resize');
             this.selectImage(this.currentSelected);
         });
     }
