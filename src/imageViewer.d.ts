@@ -37,10 +37,12 @@ export default class ImageViewer {
     protected addEventToArrows(): void;
     protected echoThumbnails(): void;
     protected selectImage(index: number): void;
+    protected loadImage(index: number): void;
     protected scrollToImage(index: number): void;
     protected setDescription(text?: string): void;
     protected setThumbnail(index: number): void;
     protected scrollThumbnail(index: number): void;
+    protected addEventToSwipe(onSwipe: (direction: string) => void, notSwiped: () => void): void;
     setStyle(style?: object): void;
     protected show(): void;
     protected addEventToHide(): void;

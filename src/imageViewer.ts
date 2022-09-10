@@ -61,6 +61,18 @@ export default class ImageViewer{
 
         //select the image:
         this.selectImage(this.currentSelected);
+
+        //swipe event:
+        this.addEventToSwipe((direction) => {
+            switch(direction){
+                case 'RIGHT':
+                    this.selectImage(this.currentSelected - 1);
+                    break;
+                case 'LEFT':
+                    this.selectImage(this.currentSelected + 1);
+                    break;
+            }
+        }, () => this.selectImage(this.currentSelected));
         
         //set style:
         this.setStyle(parameters.style);
@@ -99,9 +111,7 @@ export default class ImageViewer{
             <div class="imageViewer" id="${viewID}">
                 <div class="shadow"></div>
                 <div class="container">
-                    <div class="imagesSlider">
-                        <div class="imagesWrapper"></div>
-                    </div>
+                    <div class="imagesWrapper"></div>
                     <div class="toolbar">
                         <button class="closeButton"><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
                     </div>
@@ -120,8 +130,8 @@ export default class ImageViewer{
     //getThumbnailHtml:
     protected static getImageHtml(imageSrc:string):ChildNode{
         const html = `
-            <div class="imageContainer">
-                <img class="image" src="${imageSrc}"/>
+            <div class="imageContainer" data-url="${imageSrc}">
+                <img class="image"/>
             </div>
         `;
         return ImageViewer.getChildNode(html);
@@ -209,20 +219,34 @@ export default class ImageViewer{
 
     //selectImage:
     protected selectImage(index:number):void{
-        if(index < 0 || index > this.images.length - 1)
-            return;
+        if(index < 0 || index > this.images.length - 1) return;
         this.currentSelected = index;
-        setTimeout(() => this.scrollToImage(index), 10);
+        this.loadImage(index-1);
+        this.loadImage(index);
+        this.loadImage(index+1);
+        this.scrollToImage(index);
         this.setDescription(this.images[index].description);
         this.setThumbnail(index);
+    }
+
+    //loadImage:
+    protected loadImage(index:number):void{
+        if(index < 0 || index > this.images.length - 1) return;
+        const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
+        const imageContainers = imagesWrapper.children;
+        const imageContainer = <HTMLElement> imageContainers.item(index);
+        const url = imageContainer.dataset.url;
+        const image = <HTMLImageElement> imageContainer.getElementsByClassName('image')[0];
+        image.src = url!;
     }
 
     //scrollToImage:
     protected scrollToImage(index:number){
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
-        const imageContainers = imagesWrapper.children;
-        const imageContainer = imageContainers.item(index);
-        imageContainer?.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        const images = imagesWrapper.children;
+        const image = <HTMLElement> images.item(index);
+        const imageCenterPosition = image.offsetLeft - (imagesWrapper.getBoundingClientRect().width - image.getBoundingClientRect().width)/2;
+        imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
     }
 
     //setDescription:
@@ -246,8 +270,69 @@ export default class ImageViewer{
     protected scrollThumbnail(index:number){
         const thumbnailsWrapper = <HTMLElement> this.view.getElementsByClassName('thumbnailsWrapper')[0];
         const thumbnails = thumbnailsWrapper.children;
-        const thumbnail = thumbnails.item(index);
-        thumbnail?.scrollIntoView({inline: "center"});
+        const thumbnail = <HTMLElement> thumbnails.item(index);
+        const thumbnailCenterPosition = thumbnail.offsetLeft - (thumbnailsWrapper.getBoundingClientRect().width - thumbnail.getBoundingClientRect().width)/2;
+        thumbnailsWrapper.scrollTo({left: thumbnailCenterPosition, behavior: 'smooth'});
+    }
+
+    //onSwipe:
+    protected addEventToSwipe(
+            onSwipe:(direction:string)=>void,
+            notSwiped:()=>void
+            ){
+        let swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
+        let minX = 30; //min x swipe for horizontal swipe
+        let maxX = 30; //max x difference for vertical swipe
+        let minY = 50; //min y swipe for vertical swipe
+        let maxY = 60; //max y difference for horizontal swipe
+        let direction = '';
+        // const imagesSlider = <HTMLElement> this.view.getElementsByClassName('imagesSlider')[0];
+        const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
+        let wrapperInfo = imagesWrapper.getBoundingClientRect();
+        let scrollPosition = wrapperInfo.left;
+        //events:
+        imagesWrapper.addEventListener('touchstart', e => {
+            let touch = e.touches[0];
+            swipeDetection.startX = touch.screenX;
+            swipeDetection.startY = touch.screenY;
+            const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
+            const images = imagesWrapper.children;
+            const currentImage = <HTMLElement> images.item(this.currentSelected);
+            scrollPosition = currentImage.offsetLeft;
+        });
+        imagesWrapper.addEventListener('touchmove', e => {
+            e.preventDefault();
+            let touch = e.touches[0];
+            swipeDetection.endX = touch.screenX;
+            swipeDetection.endY = touch.screenY;
+            //sync the scroll with touch:
+            let touchChange = swipeDetection.startX - touch.screenX;
+            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+        });
+        imagesWrapper.addEventListener('touchend', e => {
+            //horizontal detection:
+            if(
+                (((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
+                 ((swipeDetection.endY < swipeDetection.startY + maxY) && (swipeDetection.startY > swipeDetection.endY - maxY)  &&
+                  (swipeDetection.endX > 0)))){
+                if(swipeDetection.endX > swipeDetection.startX)
+                    direction = 'RIGHT'; else direction = 'LEFT';
+            }
+            //vertical detection:
+            else if(
+                (((swipeDetection.endY - minY > swipeDetection.startY) || (swipeDetection.endY + minY < swipeDetection.startY)) &&
+                 ((swipeDetection.endX < swipeDetection.startX + maxX) && (swipeDetection.startX > swipeDetection.endX - maxX)  &&
+                  (swipeDetection.endY > 0)))){
+                if(swipeDetection.endY > swipeDetection.startY)
+                    direction = 'DOWN'; else direction = 'UP';
+            }
+
+            //run the callback:
+            if(direction === '') notSwiped();
+            else onSwipe(direction);
+            swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
+            direction = '';
+        });
     }
 
     //setStyle:
