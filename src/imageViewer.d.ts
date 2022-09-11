@@ -14,6 +14,7 @@ declare type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
+    stretchImages?: boolean;
     style?: object;
 };
 export default class ImageViewer {
@@ -23,13 +24,14 @@ export default class ImageViewer {
     protected currentSelected: number;
     protected buttons?: button[];
     protected showThumbnails: boolean;
+    protected stretchImages: boolean;
     protected isHudHide: boolean;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
     protected static generateViewID(): number;
     protected static getHtml(viewID: number): ChildNode;
-    protected static getImageHtml(imageSrc: string): ChildNode;
+    protected static getImageHtml(imageSrc: string, stretchImages: boolean): ChildNode;
     protected static getButtonHtml(name: string, iconSrc: string, iconSize: string): ChildNode;
     protected static getThumbnailHtml(index: number, imageSrc: string, title?: string): ChildNode;
     protected static getChildNode(html: string): ChildNode;

@@ -15,6 +15,7 @@ type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
+    stretchImages?: boolean;
     style?: object;
 }
 
@@ -27,6 +28,7 @@ export default class ImageViewer{
     protected currentSelected:  number;
     protected buttons?:         button[];
     protected showThumbnails:   boolean;
+    protected stretchImages:    boolean;
     protected isHudHide:        boolean;
     protected style?:           object;
 
@@ -47,6 +49,7 @@ export default class ImageViewer{
         this.currentSelected = parameters.currentSelected ?? 0;
         this.buttons         = parameters.buttons;
         this.showThumbnails  = parameters.showThumbnails ?? true;
+        this.stretchImages   = parameters.stretchImages ?? false;
         this.isHudHide       = false;
 
         //show images:
@@ -136,9 +139,9 @@ export default class ImageViewer{
 	}
 
     //getThumbnailHtml:
-    protected static getImageHtml(imageSrc:string):ChildNode{
+    protected static getImageHtml(imageSrc:string, stretchImages:boolean):ChildNode{
         const html = `
-            <button class="imageContainer" data-url="${imageSrc}">
+            <button class="imageContainer${stretchImages ? ' stretch' : ''}" data-url="${imageSrc}">
                 <img class="image"/>
             </button>
         `;
@@ -178,7 +181,7 @@ export default class ImageViewer{
     protected showImages(){
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         this.images.forEach((image) => {
-            const imageHtml = ImageViewer.getImageHtml(image.mainUrl);
+            const imageHtml = ImageViewer.getImageHtml(image.mainUrl, this.stretchImages);
             imagesWrapper.appendChild(imageHtml);
         });
     }
@@ -233,12 +236,15 @@ export default class ImageViewer{
         setTimeout(() => firstContainer.focus(), 100);
         imageContainers.forEach(container => {
             container.addEventListener('keydown', e => {
-                e.preventDefault();
                 const event  = <KeyboardEvent> e;
-                if(event.key === 'ArrowLeft')
+                if(event.key === 'ArrowLeft'){
+                    e.preventDefault();
                     this.selectImage(this.currentSelected - 1);
-                if(event.key === 'ArrowRight')
+                }
+                if(event.key === 'ArrowRight'){
+                    e.preventDefault();
                     this.selectImage(this.currentSelected + 1);
+                }
                 });
         });
     }

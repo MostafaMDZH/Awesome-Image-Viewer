@@ -5,7 +5,7 @@ class ImageViewer {
     constructor(parameters) {
         //append CSS styles to DOM:
         // ImageViewer.appendCSS();//comment at dev mode
-        var _a, _b;
+        var _a, _b, _c;
         //the view:
         this.viewID = ImageViewer.generateViewID();
         const view = ImageViewer.getHtml(this.viewID);
@@ -16,6 +16,7 @@ class ImageViewer {
         this.currentSelected = (_a = parameters.currentSelected) !== null && _a !== void 0 ? _a : 0;
         this.buttons = parameters.buttons;
         this.showThumbnails = (_b = parameters.showThumbnails) !== null && _b !== void 0 ? _b : true;
+        this.stretchImages = (_c = parameters.stretchImages) !== null && _c !== void 0 ? _c : false;
         this.isHudHide = false;
         //show images:
         this.showImages();
@@ -89,9 +90,9 @@ class ImageViewer {
         return ImageViewer.getChildNode(html);
     }
     //getThumbnailHtml:
-    static getImageHtml(imageSrc) {
+    static getImageHtml(imageSrc, stretchImages) {
         const html = `
-            <button class="imageContainer" data-url="${imageSrc}">
+            <button class="imageContainer${stretchImages ? ' stretch' : ''}" data-url="${imageSrc}">
                 <img class="image"/>
             </button>
         `;
@@ -127,7 +128,7 @@ class ImageViewer {
     showImages() {
         const imagesWrapper = this.view.getElementsByClassName('imagesWrapper')[0];
         this.images.forEach((image) => {
-            const imageHtml = ImageViewer.getImageHtml(image.mainUrl);
+            const imageHtml = ImageViewer.getImageHtml(image.mainUrl, this.stretchImages);
             imagesWrapper.appendChild(imageHtml);
         });
     }
@@ -182,12 +183,15 @@ class ImageViewer {
         setTimeout(() => firstContainer.focus(), 100);
         imageContainers.forEach(container => {
             container.addEventListener('keydown', e => {
-                e.preventDefault();
                 const event = e;
-                if (event.key === 'ArrowLeft')
+                if (event.key === 'ArrowLeft') {
+                    e.preventDefault();
                     this.selectImage(this.currentSelected - 1);
-                if (event.key === 'ArrowRight')
+                }
+                if (event.key === 'ArrowRight') {
+                    e.preventDefault();
                     this.selectImage(this.currentSelected + 1);
+                }
             });
         });
     }

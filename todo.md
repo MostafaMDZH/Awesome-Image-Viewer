@@ -1,5 +1,5 @@
 ## Features:
-- arrow for thumbnail list?
 - zoom
 
+- arrow for thumbnail list
 - back nav on #url
