@@ -53,9 +53,6 @@
         position: absolute;
         top: 0;
         left: 0;
-        > *{
-            transition: opacity 200ms ease-in-out;
-        }
         > .imagesWrapper{
             width: 100%;
             height: 100%;
@@ -87,11 +84,14 @@
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
-                }.zoom{
+                }
+            }.zoom{
+                > .image{
                     max-width: unset;
                     max-height: unset;
                     position: absolute;
                     top: 0;
+                    left: 0;
                 }
             }
         }
@@ -103,12 +103,17 @@
             right: 0;
             display: flex;
             flex-direction: column;
-            > .closeButton{
+            > *{
+                transition: opacity 200ms ease-in-out;
+            }
+            > .defaultButton,
+            > .customButton{
                 @extend .darkTransparentBackground;
                 width: 100%;
                 height: 55px;
-                border-bottom-left-radius: 5px;
                 display: flex;
+            }
+            > .defaultButton{
                 justify-content: center;
                 align-items: center;
                 > div{
@@ -119,12 +124,8 @@
                     align-items: center;
                 }
             }
+            > .zoomOutButton{display: none;}
             > .customButton{
-                @extend .darkTransparentBackground;
-                width: 100%;
-                height: 55px;
-                border-top-left-radius: 5px;
-                border-bottom-left-radius: 5px;
                 background-size: 19px auto;
                 background-repeat: no-repeat;
                 background-position: center center;
@@ -145,6 +146,7 @@
             position: absolute;
             top: 50%;
             transform: translate(0, -50%);
+            transition: opacity 200ms ease-in-out;
             > div{
                 width: fit-content;
                 height: fit-content;
@@ -177,6 +179,7 @@
             bottom: 20px;
             transform: translate(-50%, 0);
             gap: 8px;
+            transition: opacity 200ms ease-in-out;
             > .description{
                 padding: 2px 10px;
                 background-color: rgba(0,0,0,.7);
@@ -214,22 +217,32 @@
 
 .imageViewer.hudOpacity{
     > .container{
-        > *{
+        > .toolbar > *,
+        > .arrowButton,
+        > .footer{
             opacity: 0;
-        }
-        > .imagesWrapper{
-            opacity: 1;
         }
     }
 }
 
 .imageViewer.hudDisplay{
     > .container{
-        > *{
+        > .toolbar > *,
+        > .arrowButton,
+        > .footer{
             display: none;
         }
-        > .imagesWrapper{
-            display: flex;
+    }
+}
+
+.imageViewer.halfHud{
+    > .container{
+        > .toolbar{
+            > .closeButton,
+            > .zoomOutButton{
+                opacity: 1;
+                display: flex;
+            }
         }
     }
 }
@@ -242,24 +255,18 @@
     }
 }
 
-
-//responsive:
-@media (orientation: landscape) or (max-width: 450px){
+//mobile portrait:
+@media (max-width: 450px){
     .imageViewer{
         > .container{
             > .toolbar{
                 width: auto;
                 height: 50px;
                 flex-direction: row-reverse;
-                > .closeButton{
-                    width: 50px;
-                    height: 100%;
-                }
+                > .defaultButton,
                 > .customButton{
                     width: 50px;
                     height: 100%;
-                    border-top-left-radius: 0;
-                    border-bottom-right-radius: 5px;
                 }
             }
             > .arrowButton{
@@ -270,11 +277,22 @@
     }
 }
 
+//mobile landscape:
 @media (orientation: landscape) and (max-height: 450px){
     .imageViewer{
         > .container{
+            > .toolbar{
+                width: auto;
+                height: 50px;
+                flex-direction: row-reverse;
+                > .defaultButton,
+                > .customButton{
+                    width: 50px;
+                    height: 100%;
+                }
+            }
             > .footer{
-                bottom: 10px;
+                bottom: 5px;
             }
         }
     }

@@ -53,8 +53,8 @@ export default class ImageViewer {
     protected scrollThumbnail(index: number): void;
     protected addEventToSwipe(onSwipe: (direction: string) => void, notSwiped: () => void): void;
     protected addEventToHudAndZoom(): void;
+    protected flipZoom(imageContainer: HTMLElement, clickX: number, clickY: number): void;
     protected flipHud(show: boolean): void;
-    protected flipZoom(image: Element): void;
     protected addEventToWindowResize(): void;
     setStyle(style?: object): void;
     protected show(): void;
