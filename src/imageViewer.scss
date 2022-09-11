@@ -83,15 +83,11 @@
                     height: auto;
                     max-height: 100%;
                     cursor: pointer;
-                }
-            }.stretch{
-                > .image{
+                }.stretch{
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
-                }
-            }.zoom{
-                > .image{
+                }.zoom{
                     max-width: unset;
                     max-height: unset;
                     position: absolute;

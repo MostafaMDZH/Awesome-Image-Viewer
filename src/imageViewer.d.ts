@@ -1,3 +1,4 @@
+/// <reference types="node" />
 declare type image = {
     mainUrl: string;
     thumbnailUrl?: string;
@@ -14,6 +15,7 @@ declare type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
+    isZommable?: boolean;
     stretchImages?: boolean;
     style?: object;
 };
@@ -24,8 +26,12 @@ export default class ImageViewer {
     protected currentSelected: number;
     protected buttons?: button[];
     protected showThumbnails: boolean;
+    protected isZoomable: boolean;
+    protected isInZoom: boolean;
     protected stretchImages: boolean;
-    protected isHudHide: boolean;
+    protected isHudShow: boolean;
+    protected dbcTimer: NodeJS.Timeout;
+    protected dbcWaiting: boolean;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
@@ -46,7 +52,9 @@ export default class ImageViewer {
     protected setThumbnail(index: number): void;
     protected scrollThumbnail(index: number): void;
     protected addEventToSwipe(onSwipe: (direction: string) => void, notSwiped: () => void): void;
-    protected addEventToHudHide(): void;
+    protected addEventToHudAndZoom(): void;
+    protected flipHud(show: boolean): void;
+    protected flipZoom(image: Element): void;
     protected addEventToWindowResize(): void;
     setStyle(style?: object): void;
     protected show(): void;

@@ -5,7 +5,7 @@ class ImageViewer {
     constructor(parameters) {
         //append CSS styles to DOM:
         // ImageViewer.appendCSS();//comment at dev mode
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         //the view:
         this.viewID = ImageViewer.generateViewID();
         const view = ImageViewer.getHtml(this.viewID);
@@ -16,8 +16,12 @@ class ImageViewer {
         this.currentSelected = (_a = parameters.currentSelected) !== null && _a !== void 0 ? _a : 0;
         this.buttons = parameters.buttons;
         this.showThumbnails = (_b = parameters.showThumbnails) !== null && _b !== void 0 ? _b : true;
-        this.stretchImages = (_c = parameters.stretchImages) !== null && _c !== void 0 ? _c : false;
-        this.isHudHide = false;
+        this.isInZoom = false;
+        this.isZoomable = (_c = parameters.isZommable) !== null && _c !== void 0 ? _c : true;
+        this.stretchImages = (_d = parameters.stretchImages) !== null && _d !== void 0 ? _d : false;
+        this.isHudShow = true;
+        this.dbcTimer = setTimeout(() => { }, 0);
+        this.dbcWaiting = false;
         //show images:
         this.showImages();
         //show toolbar:
@@ -39,8 +43,8 @@ class ImageViewer {
                     break;
             }
         }, () => this.selectImage(this.currentSelected));
-        //hud hide event:
-        this.addEventToHudHide();
+        //hud and zoom events:
+        this.addEventToHudAndZoom();
         //addEventToWindowResize:
         this.addEventToWindowResize();
         //set style:
@@ -77,6 +81,7 @@ class ImageViewer {
                     <div class="imagesWrapper"></div>
                     <div class="toolbar">
                         <button class="closeButton"><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
+                        <button class="zoomButton"><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
                     </div>
                     <button class="arrowButton leftButton" ><div><svg fill="none" width="22" height="22" viewBox="3 3 18 18" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="15 18 9 12 15 6" /></svg></div></button>
                     <button class="arrowButton rightButton"><div><svg fill="none" width="22" height="22" viewBox="3 3 18 18" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"  /></svg></div></button>
@@ -262,6 +267,8 @@ class ImageViewer {
         let scrollPosition = wrapperInfo.left;
         //events:
         imagesWrapper.addEventListener('touchstart', e => {
+            if (this.isInZoom)
+                return;
             let touch = e.touches[0];
             swipeDetection.startX = touch.screenX;
             swipeDetection.startY = touch.screenY;
@@ -271,6 +278,8 @@ class ImageViewer {
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
+            if (this.isInZoom)
+                return;
             e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
@@ -280,6 +289,8 @@ class ImageViewer {
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
+            if (this.isInZoom)
+                return;
             //horizontal detection:
             if ((((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
                 ((swipeDetection.endY < swipeDetection.startY + maxY) && (swipeDetection.startY > swipeDetection.endY - maxY) &&
@@ -307,23 +318,51 @@ class ImageViewer {
             direction = '';
         });
     }
-    //addEventToHudHide:
-    addEventToHudHide() {
+    //addEventToHudAndZoom:
+    addEventToHudAndZoom() {
         const images = this.view.querySelectorAll('.image');
         images.forEach(image => {
             image.addEventListener('click', e => {
                 e.stopPropagation();
-                if (this.isHudHide) {
-                    this.view.classList.remove('hudDisplay');
-                    setTimeout(() => this.view.classList.remove('hudOpacity'), 50);
+                if (!this.dbcWaiting) {
+                    this.dbcWaiting = true;
+                    this.dbcTimer = setTimeout(() => {
+                        if (this.dbcWaiting)
+                            this.flipHud(!this.isHudShow);
+                        this.dbcWaiting = false;
+                    }, 200);
                 }
                 else {
-                    this.view.classList.add('hudOpacity');
-                    setTimeout(() => this.view.classList.add('hudDisplay'), 200);
+                    clearTimeout(this.dbcTimer);
+                    this.dbcWaiting = false;
+                    this.flipZoom(image);
                 }
-                this.isHudHide = !this.isHudHide;
             });
         });
+    }
+    //flipHud:
+    flipHud(show) {
+        if (show) {
+            this.view.classList.remove('hudDisplay');
+            setTimeout(() => this.view.classList.remove('hudOpacity'), 50);
+        }
+        else {
+            this.view.classList.add('hudOpacity');
+            setTimeout(() => this.view.classList.add('hudDisplay'), 200);
+        }
+        this.isHudShow = show;
+    }
+    //flipZoom:
+    flipZoom(image) {
+        if (!image.classList.contains('zoom')) {
+            image.classList.add('zoom');
+            this.flipHud(false);
+        }
+        else {
+            image.classList.remove('zoom');
+            this.flipHud(true);
+        }
+        //todo: if hud hides, so what about the zoom button??
     }
     //addEventToWindowResize:
     addEventToWindowResize() {
