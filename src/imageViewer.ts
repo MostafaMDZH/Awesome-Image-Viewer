@@ -15,7 +15,7 @@ type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
-    isZommable?: boolean;
+    isZoomable?: boolean;
     stretchImages?: boolean;
     style?: object;
 }
@@ -23,19 +23,19 @@ type constructorParameters = {
 export default class ImageViewer{
 
     //object properties:
-    protected viewID:           number;
-    protected view:             HTMLElement;
-    protected images:           image[];
-    protected currentSelected:  number;
-    protected buttons?:         button[];
-    protected showThumbnails:   boolean;
-    protected isZoomable:       boolean;
-    protected isInZoom:         boolean;
-    protected stretchImages:    boolean;
-    protected isHudShow:        boolean;
+    protected viewID:          number;
+    protected view:            HTMLElement;
+    protected images:          image[];
+    protected currentSelected: number;
+    protected buttons?:        button[];
+    protected showThumbnails:  boolean;
+    protected isZoomable:      boolean;
+    protected isInZoom:        boolean;
+    protected stretchImages:   boolean;
+    protected isHudShow:       boolean;
     protected dbcTimer;
-    protected dbcWaiting:       boolean;
-    protected style?:           object;
+    protected dbcWaiting:      boolean;
+    protected style?:          object;
 
     //constructor:
     constructor(parameters:constructorParameters){
@@ -45,7 +45,7 @@ export default class ImageViewer{
 
         //the view:
         this.viewID = ImageViewer.generateViewID();
-        const view  = ImageViewer.getHtml(this.viewID);
+        const view  = ImageViewer.getHtml(this.viewID, this.isZoomable = parameters.isZoomable ?? true);
         document.body.appendChild(view);
         this.view   = document.getElementById(this.viewID.toString()) || document.createElement('div');
 
@@ -55,7 +55,6 @@ export default class ImageViewer{
         this.buttons         = parameters.buttons;
         this.showThumbnails  = parameters.showThumbnails  ?? true;
         this.isInZoom        = false;
-        this.isZoomable      = parameters.isZommable      ?? true;
         this.stretchImages   = parameters.stretchImages   ?? false;
         this.isHudShow       = true;
         this.dbcTimer        = setTimeout(()=>{}, 0);
@@ -126,16 +125,18 @@ export default class ImageViewer{
 	}
 
     //getHtml:
-    protected static getHtml(viewID:number):ChildNode{
+    protected static getHtml(viewID:number, isZoomable:boolean):ChildNode{
         const html = `
             <div class="imageViewer" id="${viewID}">
                 <div class="shadow"></div>
                 <div class="container">
                     <div class="imagesWrapper"></div>
                     <div class="toolbar">
-                        <button class="defaultButton closeButton"  ><div><svg fill="#aaa" width="21" height="21" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
-                        <button class="defaultButton zoomOutButton"><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 17 17" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.027 6.149a5.52 5.52 0 0 1-1.27 3.908l4.26 4.26-.7.71-4.26-4.27a5.52 5.52 0 1 1 1.97-4.608zm-5.45 4.888a4.51 4.51 0 0 0 3.18-1.32l-.04.02a4.51 4.51 0 0 0 1.36-3.2 4.5 4.5 0 1 0-4.5 4.5zm-2.54-4.98h5v1h-5v-1z"/></svg></div></button>
-                        <button class="defaultButton zoomInButton" ><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 35 35" xmlns="http://www.w3.org/2000/svg"><path d="m18 12h-4v-4h-2v4h-4v2h4v4h2v-4h4z"/><path d="m21.4479 20a10.856 10.856 0 0 0 2.5521-7 11 11 0 1 0 -11 11 10.856 10.856 0 0 0 7-2.5521l7.5859 7.5521 1.4141-1.4141zm-8.4479 2a9 9 0 1 1 9-9 9.01 9.01 0 0 1 -9 9z"/><path d="m0 0h32v32h-32z" fill="none"/></svg></div></button>
+                        <button class="defaultButton closeButton" title="Close"><div><svg fill="#aaa" width="21" height="21" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
+                        ${isZoomable ? `
+                            <button class="defaultButton zoomOutButton" title="Zoom out"><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 17 17" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.027 6.149a5.52 5.52 0 0 1-1.27 3.908l4.26 4.26-.7.71-4.26-4.27a5.52 5.52 0 1 1 1.97-4.608zm-5.45 4.888a4.51 4.51 0 0 0 3.18-1.32l-.04.02a4.51 4.51 0 0 0 1.36-3.2 4.5 4.5 0 1 0-4.5 4.5zm-2.54-4.98h5v1h-5v-1z"/></svg></div></button>
+                            <button class="defaultButton zoomInButton"  title="Zoom in" ><div><svg fill="#aaa" width="22" height="22" viewBox="-1 -2 35 35" xmlns="http://www.w3.org/2000/svg"><path d="m18 12h-4v-4h-2v4h-4v2h4v4h2v-4h4z"/><path d="m21.4479 20a10.856 10.856 0 0 0 2.5521-7 11 11 0 1 0 -11 11 10.856 10.856 0 0 0 7-2.5521l7.5859 7.5521 1.4141-1.4141zm-8.4479 2a9 9 0 1 1 9-9 9.01 9.01 0 0 1 -9 9z"/><path d="m0 0h32v32h-32z" fill="none"/></svg></div></button>
+                        ` : ''}
                     </div>
                     <button class="arrowButton leftButton" ><div><svg fill="none" width="22" height="22" viewBox="3 3 18 18" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="15 18 9 12 15 6" /></svg></div></button>
                     <button class="arrowButton rightButton"><div><svg fill="none" width="22" height="22" viewBox="3 3 18 18" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"  /></svg></div></button>
@@ -305,8 +306,10 @@ export default class ImageViewer{
             th.classList.remove('selected');
         });
         const thumbnail = <HTMLElement> this.view.querySelector('[data-index="' + index + '"]');
-        thumbnail.classList.add('selected');
-        this.scrollThumbnail(index);
+        if(thumbnail !== null){
+            thumbnail.classList!.add('selected');
+            this.scrollThumbnail(index);
+        }
     }
 
     //scrollThumbnail:
@@ -393,7 +396,6 @@ export default class ImageViewer{
                 }else{
                     clearTimeout(this.dbcTimer);
                     this.dbcWaiting = false;
-
                     this.flipZoom(<HTMLElement>image.parentElement, (<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
                 }
             });
@@ -415,6 +417,7 @@ export default class ImageViewer{
 
     //flipZoom:
     protected flipZoom(imageContainer:HTMLElement, clickX:number, clickY:number){
+        if(!this.isZoomable) return;
         if(!imageContainer.classList.contains('zoom')){
             imageContainer.classList.add('zoom');
             const image = <HTMLElement> imageContainer.getElementsByClassName('image')[0];

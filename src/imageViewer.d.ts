@@ -15,7 +15,7 @@ declare type constructorParameters = {
     currentSelected?: number;
     buttons?: button[];
     showThumbnails?: boolean;
-    isZommable?: boolean;
+    isZoomable?: boolean;
     stretchImages?: boolean;
     style?: object;
 };
@@ -36,7 +36,7 @@ export default class ImageViewer {
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;
     protected static generateViewID(): number;
-    protected static getHtml(viewID: number): ChildNode;
+    protected static getHtml(viewID: number, isZoomable: boolean): ChildNode;
     protected static getImageHtml(imageSrc: string, stretchImages: boolean): ChildNode;
     protected static getButtonHtml(name: string, iconSrc: string, iconSize: string): ChildNode;
     protected static getThumbnailHtml(index: number, imageSrc: string, title?: string): ChildNode;

@@ -43,7 +43,7 @@
     > .shadow{
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,.8);
+        background-color: rgba(0,0,0,.85);
         opacity: 0;
         transition: opacity 160ms ease-in-out;
     }
@@ -80,7 +80,9 @@
                     height: auto;
                     max-height: 100%;
                     cursor: pointer;
-                }.stretch{
+                }
+            }.stretch{
+                > .image{
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
