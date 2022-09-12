@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Cookies from 'universal-cookie'
 import Snackbar from 'awesome-snackbar'
 import ImageViewer from 'awesome-image-viewer'
+import * as images from '../data/images'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
 
@@ -40,147 +41,6 @@ export default function Main(){
             }
         });
     }, 2000);
-
-    // setTimeout(function(){
-    //     if(hasShow) return;
-    //     hasShow = true;
-    //     showSample();
-    // }, 300);
-
-    const showSample = () => {
-        new ImageViewer({
-            images: [
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                }
-                ,{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                },{
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Baloon.1.min.jpg',
-                    description: 'Balloon'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Fun/Bmx.1.min.jpg',
-                    description: 'Bmx'
-                },
-                {
-                    mainUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.jpg',
-                    thumbnailUrl: 'https://api.caspiandictionary.com/App/Resources/Gallery/Flower/Adonis%20Vernalis.1.min.jpg',
-                    description: 'Adonis Vernalis'
-                }
-            ],
-            buttons: [
-                {
-                    name: 'Edit',
-                    iconSrc: editIcon.src,
-                    onSelect: ()=>alert('Edit Selected')
-                },
-                {
-                    name: 'Delete',
-                    iconSrc: deleteIcon.src,
-                    iconSize: '18px auto',
-                    onSelect: ()=>alert('Delete Selected')
-                }
-            ]
-        });
-    }
-
     
     //render:
     return (
@@ -211,7 +71,6 @@ export default function Main(){
                             <a className='navLink' href='#thumbnails'      >thumbnails      </a>
                             <a className='navLink' href='#zoom'            >zoom            </a>
                             <a className='navLink' href='#custom-buttons'  >custom buttons  </a>
-                            <a className='navLink' href='#custom-style'    >custom style    </a>
                         </div>
                     </div>
 
@@ -238,7 +97,6 @@ export default function Main(){
                             <li>Cover Size</li>
                             <li>Thumbnail Support</li>
                             <li>Navigation With Arrow Keys</li>
-                            <li>Custom Style</li>
                             <li>Responsive Design</li>
                             <li>Dynamic HTML</li>
                             <li>Lightweight</li>
@@ -276,7 +134,11 @@ export default function Main(){
                         <p className='step'><a className='bold'>{'>'} step 3 : </a>start showing your images!</p>
                         <div className='codeWrapper'>
                             <button className='codeSection executable'
-                                onClick={() => {showSample()}}>
+                                onClick={() => {
+                                    new ImageViewer({
+                                        images: images.allImages
+                                    });
+                                }}>
                                 <p><span>new ImageViewer</span>{"({ ... some options ... });"}</p>
                             </button>
                         </div>
@@ -285,28 +147,27 @@ export default function Main(){
                         <h3 className='sectionName' id='images-format'><a href='#images-format'># Images Format</a></h3>
                         <p className='sectionDescription'>The format of the images should be like this:</p>
                         <div className='codeWrapper executable'
-                                onClick={() => {
-                                    new ImageViewer({
-                                        // title: 'Pick a language',
-                                        // options: data.sampleLanguages
-                                    });
-                                }}>
-                            <p className='comment'># The thumbnailUrl and description are optional</p>
+                            onClick={() => {
+                                new ImageViewer({
+                                    images: images.threeImages
+                                });
+                            }}>
+                            <p className='comment'># The thumbnail and description are optional</p>
                             <button className='codeSection'>
                                 <p>
                                     {"const data = ["}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/bmx.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/bmx.min.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'BMX',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/steel_wool.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/steel_wool.min.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'Steel Wool',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/apple.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/apple.min.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'apple',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/beach.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/beach.min.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'Beach',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/road.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/Fountain.jpg',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"..."}<br></br>
                                     {"]"}
@@ -314,265 +175,150 @@ export default function Main(){
                             </button>
                         </div>
 
-                        {/* icon support */}
-                        <h3 className='sectionName' id='icon-support'><a href='#icon-support'># Icon Support</a></h3>
-                        <p className='sectionDescription'>You can add iconSrc and iconSize attributes to the option objects so your option would have an icon:</p>
+                        {/* current selected */}
+                        <h3 className='sectionName' id='current-selected'><a href='#current-selected'># Current Selected</a></h3>
+                        <p className='sectionDescription'>Instead of the first image, you can select whatever you want:</p>
                         <div className='codeWrapper'>
-                            <p className='comment'># The default value of the icon size is &apos;17px auto&apos;</p>
+                            <p className='comment'># Index starts from one</p>
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        title: 'Pick a language',
-                                        options: data.sampleLanguagesWithFlags
-                                    });
-                                }}>
-                                <p>
-                                    {"const sampleLanguagesWithFlags = ["}<br></br>
-                                    &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"name"}{": 'English',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"id"}{": 'en',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSrc"}</span>{": 'ukFlag.svg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSize"}</span>{": '20px auto',"}<br></br>
-                                    &nbsp;&nbsp;{"},"}<br></br>
-                                    &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"name"}{": 'French',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"id"}{": 'fr',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSrc"}</span>{": 'frFlag.svg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSize"}</span>{": '20px 28px',"}<br></br>
-                                    &nbsp;&nbsp;{"},"}<br></br>
-                                    &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"name"}{": 'Spanish',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"id"}{": 'es',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSrc"}</span>{": 'spFlag.svg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSize"}</span>{": '18px auto',"}<br></br>
-                                    &nbsp;&nbsp;{"},"}<br></br>
-                                    &nbsp;&nbsp;{"..."}<br></br>
-                                    {"]"}
-                                </p>
-                            </button>
-                        </div>
-
-                        {/* current option */}
-                        <h3 className='sectionName' id='current-option'><a href='#current-option'># Current Option</a></h3>
-                        <p className='sectionDescription'>You can highlight the current selected option via the currentOptionId parameter:</p>
-                        <div className='codeWrapper'>
-                            <button className='codeSection executable'
-                                onClick={() => {
-                                    new ImageViewer({
-                                        title: 'Pick a language',
-                                        options: data.sampleLanguagesWithFlags,
-                                        currentOptionId: 'en'
+                                        images: images.threeImages,
+                                        currentSelected: 1
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"title: 'Pick a language',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: sampleLanguagesWithFlags,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"currentOptionId"}</span>{": 'en',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"currentSelected"}</span>{": 2"}<br></br>
                                     {"});"}
                                 </p>
                             </button>
                         </div>
 
-                        {/* recent selects */}
-                        <h3 className='sectionName' id='recent-selects'><a href='#recent-selects'># Recent Selects</a></h3>
-                        <p className='sectionDescription'>You can show the frequently selected option like this:</p>
+                        {/* cover size */}
+                        <h3 className='sectionName' id='cover-size'><a href='#cover-size'># Cover Size</a></h3>
+                        <p className='sectionDescription'>If you set the stretchImages to true, it would stretch the small images to fill the page:</p>
                         <div className='codeWrapper'>
+                            <p className='comment'># default:</p>
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        isSearchable: true,
-                                        searchPlaceholder: 'Search languages...',
-                                        options: data.allLanguages,
-                                        recentSelects: data.recentLanguages
+                                        images: images.smallImages,
+                                        stretchImages: false
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"isSearchable: true,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"searchPlaceholder: 'Search languages',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: allLanguages,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"recentSelects"}</span>{": recentLanguages"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"stretchImages"}</span>{": false"}<br></br>
                                     {"});"}
                                 </p>
                             </button>
-                            <p className='comment'># Notice: format of the recent selects is the same as the options, except in recent selects you can&apos;t have icons.</p>
-                        </div>
-
-                        {/* column number */}
-                        <h3 className='sectionName' id='column-number'><a href='#column-number'># Column Number</a></h3>
-                        <p className='sectionDescription'>You can customize the max column number via the maxColumns parameter:</p>
-                        <div className='codeWrapper'>
+                            <p className='comment'># stretch:</p>
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        isSearchable: true,
-                                        searchPlaceholder: 'Search languages...',
-                                        options: data.allLanguages,
-                                        maxColumns: 1
+                                        images: images.smallImages,
+                                        stretchImages: true
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"isSearchable: true,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"searchPlaceholder: 'Search languages',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: allLanguages,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"maxColumns"}</span>{": 1"}<br></br>
-                                    {"});"}
-                                </p>
-                            </button>
-                            <p className='comment'># Notice: the final column number is the minimum between the screen size, the size of the options(in a similar 4:3 ratio), and your specified number.</p>
-                        </div>
-
-                        {/* theme */}
-                        <h3 className='sectionName' id='theme'><a href='#theme'># Theme</a></h3>
-                        <p className='sectionDescription'>The default theme is light, but you can enable the dark theme with the theme parameter:</p>
-                        <div className='codeWrapper'>
-                            <button className='codeSection executable'
-                                onClick={() => {
-                                    new ImageViewer({
-                                        title: 'Pick a language',
-                                        options: data.sampleLanguagesWithFlags,
-                                        theme: 'dark'
-                                    });
-                                }}>
-                                <p>
-                                    {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"theme"}</span>{": 'dark',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"title: 'Pick a language',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: sampleLanguages"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"stretchImages"}</span>{": true"}<br></br>
                                     {"});"}
                                 </p>
                             </button>
                         </div>
 
-                        {/* custom style */}
-                        <h3 className='sectionName' id='custom-style'><a href='#custom-style'># Custom Style</a></h3>
-                        <p className='sectionDescription'>The Awesome ImageViewer&apos;s html markup is equivalent to below:</p>
-                        <div className='codeWrapper'>
-                            <button className='codeSection'>
-                                <p>
-                                    {"<div class='"}<span>{"shadow"}</span>{"'></div>"}<br></br>
-                                    {"<div class='"}<span>{"container"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"window"}</span>{"'>"}<br></br>
-                                    <br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"toolbar"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<a class='"}<span>{"title"}</span>{"'></a>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"searchContainer"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='text' class='"}<span>{"searchInput"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"recentSelectsWrapper"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<button class='"}<span>{"closeButton"}</span>{"'></button>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    <br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"optionsColumnsWrapper"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"optionsColumn"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton"}&nbsp;&nbsp;&nbsp;{"selected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<div class='"}<span>{"optionsColumn"}</span>{"'>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<input type='button'"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"class='"}<span>{"navButton recentButton unselected"}</span>{"'/>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    <br></br>
-                                    &nbsp;&nbsp;&nbsp;{"</div>"}<br></br>
-                                    {"</div>"}
-                                </p>
-                            </button>
-                        </div>
-                        <p className='sectionDescription'>So you can apply your custom style in a form of an array of classes:</p>
+                        {/* thumbnail */}
+                        <h3 className='sectionName' id='thumbnails'><a href='#thumbnails'># Thumbnails</a></h3>
+                        <p className='sectionDescription'>If you don&apos;t specify the thumbnail image, the main image will be used as the thumbnail. but if you don&apos;t want to show the thumbnails, you can set the showThumbnails to false:</p>
                         <div className='codeWrapper'>
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        title: 'Pick a language',
-                                        options: data.sampleLanguages,
-                                        currentOptionId: 'en',
-                                        style: {
-                                            shadow: [
-                                                ['background-color', 'rgba(255,255,255, 0.5']
-                                            ],
-                                            title: [
-                                                ['font-style', 'italic']
-                                            ],
-                                            optionButton: [
-                                                ['font-weight', 'bold']
-                                            ],
-                                            selected: [
-                                                ['background-color', '#dfd'],
-                                                ['color', '#282']
-                                            ]
-                                        }
+                                        images: images.threeImages,
+                                        showThumbnails: false
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"title: 'Pick a language',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: sampleLanguages,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"style: {"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"shadow: ["}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"['background-color', 'rgba(255,255,255, 0.5'],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"title: ["}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"['font-style', 'italic'],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"optionButton: ["}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"['font-weight', 'bold'],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"selected: ["}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"['background-color', '#dfd'],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"['color', '#282'],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"],"}</span><br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"}"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"showThumbnails"}</span>{": false"}<br></br>
+                                    {"});"}
+                                </p>
+                            </button>
+                        </div>
+
+                        {/* zoom */}
+                        <h3 className='sectionName' id='zoom'><a href='#zoom'># Zoom</a></h3>
+                        <p className='sectionDescription'>You can disable zoom with isZoomable parameter:</p>
+                        <div className='codeWrapper'>
+                            <button className='codeSection executable'
+                                onClick={() => {
+                                    new ImageViewer({
+                                        images: images.threeImages,
+                                        isZoomable: false
+                                    });
+                                }}>
+                                <p>
+                                    {"new ImageViewer({"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"isZoomable"}</span>{": false"}<br></br>
+                                    {"});"}
+                                </p>
+                            </button>
+                        </div>
+
+                        {/* custom buttons */}
+                        <h3 className='sectionName' id='custom-buttons'><a href='#custom-buttons'># Custom Buttons</a></h3>
+                        <p className='sectionDescription'>You can add some custom buttons:</p>
+                        <div className='codeWrapper'>
+                            <p className='comment'># iconSize is optional (default value is '19px auto')</p>
+                            <button className='codeSection executable'
+                                onClick={() => {
+                                    new ImageViewer({
+                                        images: images.threeImages,
+                                        buttons: [
+                                            {
+                                                name: 'Edit',
+                                                iconSrc: editIcon.src,
+                                                onSelect: ()=>alert('Edit selected!')
+                                            },
+                                            {
+                                                name: 'Delete',
+                                                iconSrc: deleteIcon.src,
+                                                iconSize: '18px auto',
+                                                onSelect: ()=>alert('Delete selected!')
+                                            }
+                                        ]
+                                    });
+                                }}>
+                                <p>
+                                    {"new ImageViewer({"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"buttons: ["}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"{"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"name: 'Edit',"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSrc: 'cdn.con/icons/edit.svg',"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"onSelect: () => alert('Edit selected!')"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"},"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"{"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"name: 'Delete',"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSrc: 'cdn.con/icons/delete.svg',"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"iconSize: '18px auto',"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"onSelect: () => alert('Delete selected!')"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{"}"}</span><br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"]"}</span><br></br>
                                     {" });"}
                                 </p>
                             </button>
                         </div>
 
-                        {/* on select */}
-                        <h3 className='sectionName' id='on-select'><a href='#on-select'># On Select</a></h3>
-                        <p className='sectionDescription'>When the user selects an option, the onSelect() function returns the selected option id and name:</p>
-                        <div className='codeWrapper'>
-                            <button className='codeSection executable'
-                                onClick={() => {
-                                    new ImageViewer({
-                                        title: 'Pick a language',
-                                        options: data.allLanguages,
-                                        onSelect: (id, name) => alert(name + '(' + id + ') selected')
-                                    });
-                                }}>
-                                <p>
-                                    {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"title: 'Pick a language',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"options: sampleLanguages,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"onSelect"}</span>{": ("}<span>{"id, name"}</span>{") => {"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"alert(name + '(' + id + ') selected');"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"}"}<br></br>
-                                    {"});"}
-                                </p>
-                            </button>
-                        </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             {/* footer */}
