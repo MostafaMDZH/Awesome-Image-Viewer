@@ -379,9 +379,9 @@ export default class ImageViewer{
 
     //addEventToHudAndZoom:
     protected addEventToHudAndZoom(){
-        const imageContainers = this.view.querySelectorAll('.imageContainer');
-        imageContainers.forEach(imageContainer => {
-            imageContainer.addEventListener('click', e => {
+        const images = this.view.querySelectorAll('.image');
+        images.forEach(image => {
+            image.addEventListener('click', e => {
                 e.stopPropagation();
                 if(!this.dbcWaiting){
                     this.dbcWaiting = true;
@@ -393,7 +393,8 @@ export default class ImageViewer{
                 }else{
                     clearTimeout(this.dbcTimer);
                     this.dbcWaiting = false;
-                    this.flipZoom(<HTMLElement>imageContainer, (<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
+
+                    this.flipZoom(<HTMLElement>image.parentElement, (<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
                 }
             });
         });

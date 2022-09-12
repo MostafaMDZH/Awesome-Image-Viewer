@@ -321,9 +321,9 @@ class ImageViewer {
     }
     //addEventToHudAndZoom:
     addEventToHudAndZoom() {
-        const imageContainers = this.view.querySelectorAll('.imageContainer');
-        imageContainers.forEach(imageContainer => {
-            imageContainer.addEventListener('click', e => {
+        const images = this.view.querySelectorAll('.image');
+        images.forEach(image => {
+            image.addEventListener('click', e => {
                 e.stopPropagation();
                 if (!this.dbcWaiting) {
                     this.dbcWaiting = true;
@@ -336,7 +336,7 @@ class ImageViewer {
                 else {
                     clearTimeout(this.dbcTimer);
                     this.dbcWaiting = false;
-                    this.flipZoom(imageContainer, e.clientX, e.clientY);
+                    this.flipZoom(image.parentElement, e.clientX, e.clientY);
                 }
             });
         });
