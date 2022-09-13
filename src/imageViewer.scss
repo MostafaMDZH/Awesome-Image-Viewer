@@ -88,12 +88,16 @@
                     object-fit: contain;
                 }
             }.zoom{
+                // display: block;
                 > .image{
                     max-width: unset;
                     max-height: unset;
                     position: absolute;
                     top: 0;
                     left: 0;
+                    // top: 50%;
+                    // left: 50%;
+                    // transform: translate(-50%, -50%);
                 }
             }
         }

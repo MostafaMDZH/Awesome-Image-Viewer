@@ -77,14 +77,9 @@ export default class ImageViewer{
 
         //swipe event:
         this.addEventToSwipe((direction) => {
-            switch(direction){
-                case 'RIGHT':
-                    this.selectImage(this.currentSelected - 1);
-                    break;
-                case 'LEFT':
-                    this.selectImage(this.currentSelected + 1);
-                    break;
-            }
+            let index = this.currentSelected;
+            direction === 'RIGHT' ? index-- : index++;
+            this.selectImage(index);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
@@ -421,6 +416,15 @@ export default class ImageViewer{
                 const imageContainer = <HTMLElement> imageContainers.item(this.currentSelected);
                 this.flipZoom(imageContainer, imageContainer.offsetWidth/2, imageContainer.offsetHeight/2);
             });
+        });
+
+        //prevent scroll on zoom:
+        const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
+        imagesWrapper.addEventListener('touchmove', e => {
+            if(this.isInZoom)
+                imagesWrapper.style.overflow = 'hidden';
+            else
+                imagesWrapper.style.overflow = 'scroll';
         });
 
     }
