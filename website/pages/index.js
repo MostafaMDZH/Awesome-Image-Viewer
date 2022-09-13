@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Cookies from 'universal-cookie'
 import Snackbar from 'awesome-snackbar'
 import ImageViewer from 'awesome-image-viewer'
-import * as images from '../data/data'
+import * as data from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
 
@@ -94,6 +94,7 @@ export default function Main(){
                             <li>Custom Buttons</li>
                             <li>Description</li>
                             <li>Custom Select</li>
+                            <li>Swipe On Touchscreen</li>
                             <li>Cover Size</li>
                             <li>Thumbnail Support</li>
                             <li>Navigation With Arrow Keys</li>
@@ -136,24 +137,28 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.allImages
+                                        images: data.allImages
                                     });
                                 }}>
-                                <p><span>new ImageViewer</span>{"({ ... some options ... });"}</p>
+                                <p>
+                                    <span>{"new ImageViewer"}</span>{"({"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: myImages"}<br></br>
+                                    {"});"}
+                                </p>
                             </button>
                         </div>
 
                         {/* images format */}
                         <h3 className='sectionName' id='images-format'><a href='#images-format'># Images Format</a></h3>
                         <p className='sectionDescription'>The format of the images should be like this:</p>
-                        <div className='codeWrapper executable'
-                            onClick={() => {
-                                new ImageViewer({
-                                    images: images.threeImages
-                                });
-                            }}>
+                        <div className='codeWrapper'>
                             <p className='comment'># The thumbnail and description are optional</p>
-                            <button className='codeSection'>
+                            <button className='codeSection executable'
+                                onClick={() => {
+                                    new ImageViewer({
+                                        images: data.threeImages
+                                    });
+                                }}>
                                 <p>
                                     {"const data = ["}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
@@ -183,7 +188,7 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.threeImages,
+                                        images: data.threeImages,
                                         currentSelected: 1
                                     });
                                 }}>
@@ -204,14 +209,13 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.smallImages,
+                                        images: data.smallImages,
                                         stretchImages: false
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"stretchImages"}</span>{": false"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: smallSampleImages"}<br></br>
                                     {"});"}
                                 </p>
                             </button>
@@ -219,13 +223,13 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.smallImages,
+                                        images: data.smallImages,
                                         stretchImages: true
                                     });
                                 }}>
                                 <p>
                                     {"new ImageViewer({"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: sampleImages,"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{"images: smallSampleImages,"}<br></br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span>{"stretchImages"}</span>{": true"}<br></br>
                                     {"});"}
                                 </p>
@@ -239,7 +243,7 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.threeImages,
+                                        images: data.threeImages,
                                         showThumbnails: false
                                     });
                                 }}>
@@ -259,7 +263,7 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.threeImages,
+                                        images: data.threeImages,
                                         isZoomable: false
                                     });
                                 }}>
@@ -280,7 +284,7 @@ export default function Main(){
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
-                                        images: images.threeImages,
+                                        images: data.threeImages,
                                         buttons: [
                                             {
                                                 name: 'Edit',
