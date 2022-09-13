@@ -245,6 +245,10 @@
                 opacity: 1;
                 display: flex;
             }
+            > .zoomInButton{
+                opacity: 0;
+                display: none;
+            }
         }
     }
 }
