@@ -9,8 +9,8 @@
   "scripts": {
     "test": "jest",
     "test-cov": "jest --coverage",
-    "pub": "npm publish",
-    "deploy": "cd website && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
+    "pub": "npm test && npm update && npm publish",
+    "dep": "cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
   },
   "devDependencies": {
     "jest": "^28.1.3",
