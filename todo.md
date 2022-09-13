@@ -1,6 +1,3 @@
-## Bug:
-- website width on mobile
-
 ## Features:
 - custom style
 - move by scroll wheel
