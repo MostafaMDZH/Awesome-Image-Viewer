@@ -66,11 +66,11 @@ export default class ImageViewer{
         //show toolbar:
         this.showToolbar();
 
-        //echo thumbnails:
-        this.echoThumbnails();
-
         //arrow event:
         this.addEventToArrows();
+
+        //echo thumbnails:
+        this.echoThumbnails();
 
         //select the image:
         this.selectImage(this.currentSelected);
@@ -211,37 +211,29 @@ export default class ImageViewer{
             })
         });
     }
-    
-    //echoThumbnails:
-    protected echoThumbnails(){
-        if(!this.showThumbnails || this.images.length <= 0) return;
-        const thumbnailsWrapper = <HTMLElement> this.view.getElementsByClassName('thumbnailsWrapper')[0];
-        let i = 0;
-        this.images.forEach((image) => {
-            const thumbnailHtml = ImageViewer.getThumbnailHtml(i, image.thumbnailUrl ?? image.mainUrl, image.description);
-            thumbnailsWrapper.appendChild(thumbnailHtml);
-            thumbnailHtml.addEventListener('click', e => {
-                e.stopPropagation();
-                const tar = <HTMLHtmlElement> e.target;
-                const index = tar.dataset.index;
-                this.selectImage(parseInt(index ?? '0'));
-            });
-            i++;
-        });
-    }
 
     //addEventToArrows:
     protected addEventToArrows(){
         const leftButton = <HTMLElement> this.view.getElementsByClassName('leftButton')[0];
+        const rightButton = <HTMLElement> this.view.getElementsByClassName('rightButton')[0];
+        
+        //if there is only one image, ignore all:
+        if(this.images.length === 1){
+            leftButton.style.display = 'none';
+            rightButton.style.display = 'none';
+            return;
+        }
+
+        //click event to buttons:
         leftButton.addEventListener('click', e => {
             e.stopPropagation();
             this.selectImage(this.currentSelected - 1);
         });
-        const rightButton = <HTMLElement> this.view.getElementsByClassName('rightButton')[0];
         rightButton.addEventListener('click', e => {
             e.stopPropagation();
             this.selectImage(this.currentSelected + 1);
         });
+
         //navigation with arrow buttons:
         const imageContainers = this.view.querySelectorAll('.imageContainer, .arrowButton, .thumbnailContainer');
         const firstContainer = <HTMLElement> imageContainers[0];
@@ -258,6 +250,24 @@ export default class ImageViewer{
                     this.selectImage(this.currentSelected + 1);
                 }
                 });
+        });
+    }
+    
+    //echoThumbnails:
+    protected echoThumbnails(){
+        if(!this.showThumbnails || this.images.length <= 1) return;//if there is only one image, ignore all
+        const thumbnailsWrapper = <HTMLElement> this.view.getElementsByClassName('thumbnailsWrapper')[0];
+        let i = 0;
+        this.images.forEach((image) => {
+            const thumbnailHtml = ImageViewer.getThumbnailHtml(i, image.thumbnailUrl ?? image.mainUrl, image.description);
+            thumbnailsWrapper.appendChild(thumbnailHtml);
+            thumbnailHtml.addEventListener('click', e => {
+                e.stopPropagation();
+                const tar = <HTMLHtmlElement> e.target;
+                const index = tar.dataset.index;
+                this.selectImage(parseInt(index ?? '0'));
+            });
+            i++;
         });
     }
 
