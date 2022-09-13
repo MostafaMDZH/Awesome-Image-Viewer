@@ -254,7 +254,7 @@ export default function Main(){
 
                         {/* zoom */}
                         <h3 className='sectionName' id='zoom'><a href='#zoom'># Zoom</a></h3>
-                        <p className='sectionDescription'>You can disable zoom with isZoomable parameter:</p>
+                        <p className='sectionDescription'>Zooming is available with the zoom button or double tap, but you can disable it with isZoomable parameter:</p>
                         <div className='codeWrapper'>
                             <button className='codeSection executable'
                                 onClick={() => {
