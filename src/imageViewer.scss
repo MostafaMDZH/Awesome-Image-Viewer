@@ -64,8 +64,8 @@
             overflow: scroll;
             @extend .hiddenScrollbar;
             > .imageContainer{
-                min-width: 100vw;
-                min-height: 100vh;
+                min-width: 100%;
+                min-height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -88,16 +88,11 @@
                     object-fit: contain;
                 }
             }.zoom{
-                // display: block;
+                display: inline;
                 > .image{
                     max-width: unset;
                     max-height: unset;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    // top: 50%;
-                    // left: 50%;
-                    // transform: translate(-50%, -50%);
+                    margin-bottom: -20px;
                 }
             }
         }

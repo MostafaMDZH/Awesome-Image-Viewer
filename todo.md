@@ -1,5 +1,5 @@
 ## Bug:
-- image in center in zoom
+- website width on mobile
 
 ## Features:
 - custom style
