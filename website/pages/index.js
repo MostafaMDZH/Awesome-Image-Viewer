@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Cookies from 'universal-cookie'
 import Snackbar from 'awesome-snackbar'
 import ImageViewer from 'awesome-image-viewer'
-import * as images from '../data/images'
+import * as images from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
 
