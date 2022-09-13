@@ -268,7 +268,7 @@ export default class ImageViewer{
 
     //selectImage:
     protected selectImage(index:number){
-        if(index < 0 || index > this.images.length - 1) return;
+        if(index < 0 || index > this.images.length - 1 || this.isInZoom) return;
         this.currentSelected = index;
         this.loadImage(index-1);
         this.loadImage(index);

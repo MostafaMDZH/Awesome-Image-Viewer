@@ -206,7 +206,7 @@ class ImageViewer {
     }
     //selectImage:
     selectImage(index) {
-        if (index < 0 || index > this.images.length - 1)
+        if (index < 0 || index > this.images.length - 1 || this.isInZoom)
             return;
         this.currentSelected = index;
         this.loadImage(index - 1);
