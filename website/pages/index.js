@@ -280,7 +280,7 @@ export default function Main(){
                         <h3 className='sectionName' id='custom-buttons'><a href='#custom-buttons'># Custom Buttons</a></h3>
                         <p className='sectionDescription'>You can add some custom buttons:</p>
                         <div className='codeWrapper'>
-                            <p className='comment'># iconSize is optional (default value is '19px auto')</p>
+                            <p className='comment'># iconSize is optional (default value is &apos;19px auto&apos;)</p>
                             <button className='codeSection executable'
                                 onClick={() => {
                                     new ImageViewer({
