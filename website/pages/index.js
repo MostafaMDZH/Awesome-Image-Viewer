@@ -162,17 +162,17 @@ export default function Main(){
                                 <p>
                                     {"const data = ["}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/steel_wool.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/steel_wool.min.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/img1.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/img1.min.jpg',"}<br></br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'Steel Wool',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/beach.jpg',"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/images/beach.min.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/img2.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"thumbnailUrl"}</span>{": 'cdn.com/img2.min.jpg',"}<br></br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span>{"description"}</span>{": 'Beach',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"{"}<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/images/Fountain.jpg',"}<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{"mainUrl"}</span>{": 'cdn.com/img3.jpg',"}<br></br>
                                     &nbsp;&nbsp;{"},"}<br></br>
                                     &nbsp;&nbsp;{"..."}<br></br>
                                     {"]"}
