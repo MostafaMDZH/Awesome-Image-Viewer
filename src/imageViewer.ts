@@ -354,13 +354,14 @@ export default class ImageViewer{
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            if(this.isInZoom || this.isSwiping) return;
-            e.preventDefault();
-            let touch = e.touches[0];
-            swipeDetection.endX = touch.screenX;
-            swipeDetection.endY = touch.screenY;
+            // alert('here');
+            // if(this.isInZoom || this.isSwiping) return;
+            // e.preventDefault();
+            // let touch = e.touches[0];
+            // swipeDetection.endX = touch.screenX;
+            // swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
-            let touchChange = swipeDetection.startX - touch.screenX;
+            // let touchChange = swipeDetection.startX - touch.screenX;
             // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
@@ -371,6 +372,10 @@ export default class ImageViewer{
 
 
             if(this.isInZoom) return;
+
+            let touch = e.touches[0];
+            swipeDetection.endX = touch.screenX;
+            swipeDetection.endY = touch.screenY;
             //horizontal detection:
             if(
                 (((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
