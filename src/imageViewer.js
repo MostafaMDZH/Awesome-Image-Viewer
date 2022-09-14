@@ -36,9 +36,9 @@ class ImageViewer {
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            setTimeout(() => {
-                this.selectImage(index);
-            }, 25);
+            // setTimeout(() => {
+            this.selectImage(index);
+            // }, 25);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -238,7 +238,8 @@ class ImageViewer {
         const images = imagesWrapper.children;
         const image = images.item(index);
         const imageCenterPosition = image.offsetLeft - (imagesWrapper.getBoundingClientRect().width - image.getBoundingClientRect().width) / 2;
-        imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
+        // imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
+        image.scrollIntoView({ behavior: 'smooth' });
     }
     //setDescription:
     setDescription(text) {
@@ -254,7 +255,7 @@ class ImageViewer {
         const thumbnail = this.view.querySelector('[data-index="' + index + '"]');
         if (thumbnail !== null) {
             thumbnail.classList.add('selected');
-            this.scrollThumbnail(index);
+            // this.scrollThumbnail(index);
         }
     }
     //scrollThumbnail:
