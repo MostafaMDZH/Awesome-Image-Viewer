@@ -392,23 +392,21 @@ export default class ImageViewer{
 
     //addEventToHudAndZoom:
     protected addEventToHudAndZoom(){
-        const images = this.view.querySelectorAll('.image');
-        images.forEach(image => {
-            image.addEventListener('click', e => {
-                e.stopPropagation();
-                if(!this.dbcWaiting){
-                    this.dbcWaiting = true;
-                    this.dbcTimer = setTimeout(() => {
-                        if(this.dbcWaiting)
-                            this.flipHud(!this.isHudShow);
-                        this.dbcWaiting = false;
-                    }, 200);
-                }else{
-                    clearTimeout(this.dbcTimer);
+        const swipeSurface = <HTMLElement> this.view.getElementsByClassName('swipeSurface')[0];
+        swipeSurface.addEventListener('click', e => {
+            e.stopPropagation();
+            if(!this.dbcWaiting){
+                this.dbcWaiting = true;
+                this.dbcTimer = setTimeout(() => {
+                    if(this.dbcWaiting)
+                        this.flipHud(!this.isHudShow);
                     this.dbcWaiting = false;
-                    this.flipZoom(<HTMLElement>image.parentElement, (<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
-                }
-            });
+                }, 200);
+            }else{
+                clearTimeout(this.dbcTimer);
+                this.dbcWaiting = false;
+                this.flipZoom((<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
+            }
         });
 
         //zoom button:
@@ -419,7 +417,7 @@ export default class ImageViewer{
                 const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
                 const imageContainers = imagesWrapper.children;
                 const imageContainer = <HTMLElement> imageContainers.item(this.currentSelected);
-                this.flipZoom(imageContainer, imageContainer.offsetWidth/2, imageContainer.offsetHeight/2);
+                this.flipZoom(imageContainer.offsetWidth/2, imageContainer.offsetHeight/2);
             });
         });
 
@@ -435,8 +433,11 @@ export default class ImageViewer{
     }
 
     //flipZoom:
-    protected flipZoom(imageContainer:HTMLElement, clickX:number, clickY:number){
+    protected flipZoom(clickX:number, clickY:number){
         if(!this.isZoomable) return;
+        const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
+        const imageContainers = imagesWrapper.children;
+        const imageContainer = <HTMLElement> imageContainers.item(this.currentSelected);
         if(!imageContainer.classList.contains('zoom')){
             imageContainer.classList.add('zoom');
             const image = <HTMLElement> imageContainer.getElementsByClassName('image')[0];
