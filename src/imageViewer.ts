@@ -354,7 +354,7 @@ export default class ImageViewer{
         });
         imagesWrapper.addEventListener('touchmove', e => {
             if(this.isInZoom) return;
-            e.preventDefault();
+            // e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
             swipeDetection.endY = touch.screenY;
