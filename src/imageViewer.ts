@@ -128,7 +128,7 @@ export default class ImageViewer{
                 <div class="shadow"></div>
                 <div class="container">
                     <div class="imagesWrapper"></div>
-                    
+                    <div class="swipeSurface"></div>
                     <div class="toolbar">
                         <button class="defaultButton closeButton" title="Close"><div><svg fill="#bfbfbf" width="21" height="21" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
                         ${isZoomable ? `
@@ -299,7 +299,6 @@ export default class ImageViewer{
         const imageContainer = <HTMLElement> imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width)/2;
         imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
-        // setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 35);
     }
 
     //setDescription:
@@ -342,11 +341,8 @@ export default class ImageViewer{
         let wrapperInfo = imagesWrapper.getBoundingClientRect();
         let scrollPosition = wrapperInfo.left;
         //events:
-        // const swipeSurface = <HTMLElement> this.view.getElementsByClassName('swipeSurface')[0];
-        // swipeSurface.addEventListener('click', e => {
-        //     e.stopPropagation();
-        // });
-        imagesWrapper.addEventListener('touchstart', e => {
+        const swipeSurface = <HTMLElement> this.view.getElementsByClassName('swipeSurface')[0];
+        swipeSurface.addEventListener('touchstart', e => {
             if(this.isInZoom) return;
             let touch = e.touches[0];
             swipeDetection.startX = touch.screenX;
@@ -356,7 +352,7 @@ export default class ImageViewer{
             const currentImage = <HTMLElement> images.item(this.currentSelected);
             scrollPosition = currentImage.offsetLeft;
         });
-        imagesWrapper.addEventListener('touchmove', e => {
+        swipeSurface.addEventListener('touchmove', e => {
             if(this.isInZoom) return;
             e.preventDefault();
             let touch = e.touches[0];
@@ -366,7 +362,7 @@ export default class ImageViewer{
             let touchChange = swipeDetection.startX - touch.screenX;
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
-        imagesWrapper.addEventListener('touchend', e => {
+        swipeSurface.addEventListener('touchend', e => {
             if(this.isInZoom) return;
             //horizontal detection:
             if(
@@ -498,17 +494,9 @@ export default class ImageViewer{
     }
 
     //addEventToHide:
-    protected addEventToHide(){//close button acts from its parent
-        const footer = this.view.getElementsByClassName('footer')[0];
-        footer.addEventListener('click', e => {
-            e.stopPropagation();
-        });
-        const container = this.view.getElementsByClassName('container')[0];
-        container.addEventListener('click', e => {
-            this.hide();
-        });
-        const shadow = this.view.getElementsByClassName('shadow')[0];
-        shadow.addEventListener('click', e => {
+    protected addEventToHide(){
+        const closeButton = this.view.getElementsByClassName('closeButton')[0];
+        closeButton.addEventListener('click', e => {
             this.hide();
         });
     }
