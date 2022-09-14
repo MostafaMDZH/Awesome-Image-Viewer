@@ -80,6 +80,7 @@
                     height: auto;
                     max-height: 100%;
                     cursor: pointer;
+                    transition: width 100ms ease-in-out, height 100ms ease-in-out;
                 }
             }.stretch{
                 > .image{
@@ -191,7 +192,7 @@
             > .description{
                 padding: 2px 10px;
                 background-color: rgba(0,0,0,.7);
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 color: #fafafa;
                 border-radius: 2px;
             }
