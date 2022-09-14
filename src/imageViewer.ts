@@ -81,7 +81,9 @@ export default class ImageViewer{
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            this.selectImage(index);
+            setTimeout(() => {
+                this.selectImage(index);
+            }, 25);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
