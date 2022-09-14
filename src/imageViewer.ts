@@ -81,9 +81,7 @@ export default class ImageViewer{
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            // setTimeout(() => {
-                this.selectImage(index);
-            // }, 25);
+            this.selectImage(index);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
@@ -273,9 +271,7 @@ export default class ImageViewer{
     //selectImage:
     protected selectImage(index:number){
         if(index < 0 || index > this.images.length - 1 || this.isInZoom) return;
-        setTimeout(() => {
-            this.currentSelected = index;
-        }, 300);
+        this.currentSelected = index;
         this.loadImage(index-1);
         this.loadImage(index);
         this.loadImage(index+1);
@@ -298,11 +294,10 @@ export default class ImageViewer{
     //scrollToImage:
     protected scrollToImage(index:number){
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
-        const images = imagesWrapper.children;
-        const image = <HTMLElement> images.item(index);
-        const imageCenterPosition = image.offsetLeft - (imagesWrapper.getBoundingClientRect().width - image.getBoundingClientRect().width)/2;
-        // imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
-        image.scrollIntoView({behavior: 'smooth'});
+        const imageContainers = imagesWrapper.children;
+        const imageContainer = <HTMLElement> imageContainers.item(index);
+        const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width)/2;
+        imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
     }
 
     //setDescription:
@@ -320,7 +315,7 @@ export default class ImageViewer{
         const thumbnail = <HTMLElement> this.view.querySelector('[data-index="' + index + '"]');
         if(thumbnail !== null){
             thumbnail.classList!.add('selected');
-            // this.scrollThumbnail(index);
+            this.scrollThumbnail(index);
         }
     }
 
@@ -365,7 +360,7 @@ export default class ImageViewer{
             let touchChange = swipeDetection.startX - touch.screenX;
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
-        imagesWrapper.addEventListener('touchend', e => {
+        imagesWrapper.addEventListener('touchend, touchcancel', e => {
             if(this.isInZoom) return;
             //horizontal detection:
             if(
