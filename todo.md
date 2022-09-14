@@ -1,4 +1,5 @@
 ## Features:
+- hide() and onHide() functions
 - custom style
 - move by scroll wheel
 - thumbnail while loading
