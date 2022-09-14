@@ -61,7 +61,7 @@
             left: 0;
             display: flex;
             gap: 100px;
-            overflow: scroll;
+            overflow: hidden;
             @extend .hiddenScrollbar;
             > .imageContainer{
                 min-width: 100%;
@@ -196,7 +196,7 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 height: 80px;
-                overflow-x: auto;
+                overflow: hidden;
                 display: flex;
                 gap: 12px;
                 > .thumbnailContainer{

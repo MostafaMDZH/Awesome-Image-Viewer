@@ -234,7 +234,7 @@ class ImageViewer {
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width) / 2;
-        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 25);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 35);
     }
     //setDescription:
     setDescription(text) {
@@ -468,6 +468,8 @@ const Style = `
     }
   }
   .hiddenScrollbar::-webkit-scrollbar, .imageViewer > .container > .footer > .thumbnailsWrapper::-webkit-scrollbar, .imageViewer > .container > .imagesWrapper > .imageContainer::-webkit-scrollbar, .imageViewer > .container > .imagesWrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
     display: none;
   }
   
@@ -641,7 +643,7 @@ const Style = `
     left: 0;
     display: flex;
     gap: 100px;
-    overflow: scroll;
+    overflow: hidden;
   }
   .imageViewer > .container > .imagesWrapper > .imageContainer {
     min-width: 100%;
@@ -783,7 +785,7 @@ const Style = `
     padding-left: 10px;
     padding-right: 10px;
     height: 80px;
-    overflow-x: auto;
+    overflow: hidden;
     display: flex;
     gap: 12px;
   }
