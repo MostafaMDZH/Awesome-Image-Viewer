@@ -236,9 +236,12 @@ class ImageViewer {
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width) / 2;
-        setTimeout(() => {
-            imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
-        }, 25);
+        imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 5);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 10);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 15);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 20);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 25);
     }
     //setDescription:
     setDescription(text) {
