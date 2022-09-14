@@ -356,13 +356,13 @@ export default class ImageViewer{
         });
         imagesWrapper.addEventListener('touchmove', e => {
             if(this.isInZoom) return;
-            // e.preventDefault();
+            e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
             if(this.isInZoom) return;
