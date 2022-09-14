@@ -61,7 +61,7 @@
             left: 0;
             display: flex;
             gap: 100px;
-            overflow: hidden;
+            overflow: scroll;
             @extend .hiddenScrollbar;
             > .imageContainer{
                 min-width: 100%;

@@ -356,20 +356,15 @@ export default class ImageViewer{
         });
         imagesWrapper.addEventListener('touchmove', e => {
             if(this.isInZoom) return;
-            // if(this.isInZoom || this.isSwiping) return;
-            e.preventDefault();
+            // e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
-            // this.isSwiping = true;
-            // setTimeout(() => {
-            //     this.isSwiping = false;
-            // }, 200);
             if(this.isInZoom) return;
             //horizontal detection:
             if(
@@ -718,7 +713,7 @@ const Style = `
     left: 0;
     display: flex;
     gap: 100px;
-    overflow: hidden;
+    overflow: scroll;
   }
   .imageViewer > .container > .imagesWrapper > .imageContainer {
     min-width: 100%;
