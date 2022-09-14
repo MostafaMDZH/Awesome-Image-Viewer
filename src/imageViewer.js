@@ -37,7 +37,7 @@ class ImageViewer {
             direction === 'RIGHT' ? index-- : index++;
             setTimeout(() => {
                 this.selectImage(index);
-            }, 30);
+            }, 5);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
