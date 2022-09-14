@@ -35,7 +35,6 @@ export default class ImageViewer{
     protected isHudShow:       boolean;
     protected dbcTimer;
     protected dbcWaiting:      boolean;
-    protected isSwiping:       boolean;
     protected style?:          object;
 
     //constructor:
@@ -60,7 +59,6 @@ export default class ImageViewer{
         this.isHudShow       = true;
         this.dbcTimer        = setTimeout(()=>{}, 0);
         this.dbcWaiting      = false;
-        this.isSwiping       = false;
 
         //show images:
         this.showImages();
@@ -81,9 +79,9 @@ export default class ImageViewer{
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            // setTimeout(()=>{
+            setTimeout(() => {
                 this.selectImage(index);
-            // }, 100);
+            }, 100);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
@@ -332,7 +330,6 @@ export default class ImageViewer{
 
     //onSwipe:
     protected addEventToSwipe(onSwipe:(direction:string)=>void, notSwiped:()=>void){
-        const thisView = this;
         let swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
         let minX = 30; //min x swipe for horizontal swipe
         let maxX = 30; //max x difference for vertical swipe
@@ -354,28 +351,17 @@ export default class ImageViewer{
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            // if(this.isInZoom || this.isSwiping) return;
-            // e.preventDefault();
-            // let touch = e.touches[0];
-            // swipeDetection.endX = touch.screenX;
-            // swipeDetection.endY = touch.screenY;
-            // //sync the scroll with touch:
-            // let touchChange = swipeDetection.startX - touch.screenX;
-            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
-        });
-        imagesWrapper.addEventListener('touchend', e => {
-            // thisView.isSwiping = true;
-            // setTimeout(() => {
-            //     thisView.isSwiping = false;
-            // }, 500);
-
-
             if(this.isInZoom) return;
-
+            e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
             swipeDetection.endY = touch.screenY;
-            
+            //sync the scroll with touch:
+            let touchChange = swipeDetection.startX - touch.screenX;
+            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+        });
+        imagesWrapper.addEventListener('touchend', e => {
+            if(this.isInZoom) return;
             //horizontal detection:
             if(
                 (((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
