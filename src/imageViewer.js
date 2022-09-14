@@ -36,9 +36,7 @@ class ImageViewer {
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            // setTimeout(() => {
             this.selectImage(index);
-            // }, 25);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -236,8 +234,7 @@ class ImageViewer {
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width) / 2;
-        imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
-        // setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 25);
+        setTimeout(() => imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' }), 25);
     }
     //setDescription:
     setDescription(text) {
@@ -253,7 +250,7 @@ class ImageViewer {
         const thumbnail = this.view.querySelector('[data-index="' + index + '"]');
         if (thumbnail !== null) {
             thumbnail.classList.add('selected');
-            // this.scrollThumbnail(index);
+            this.scrollThumbnail(index);
         }
     }
     //scrollThumbnail:
@@ -296,7 +293,7 @@ class ImageViewer {
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
             if (this.isInZoom)
