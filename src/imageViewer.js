@@ -263,7 +263,6 @@ class ImageViewer {
     }
     //onSwipe:
     addEventToSwipe(onSwipe, notSwiped) {
-        const thisView = this;
         let swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
         let minX = 30; //min x swipe for horizontal swipe
         let maxX = 30; //max x difference for vertical swipe
@@ -296,37 +295,35 @@ class ImageViewer {
             let touchChange = swipeDetection.startX - touch.screenX;
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
-        'touchend touchcancel'.split(' ').forEach(function (eventName) {
-            imagesWrapper.addEventListener(eventName, e => {
-                if (thisView.isInZoom)
-                    return;
-                //horizontal detection:
-                if ((((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
-                    ((swipeDetection.endY < swipeDetection.startY + maxY) && (swipeDetection.startY > swipeDetection.endY - maxY) &&
-                        (swipeDetection.endX > 0)))) {
-                    if (swipeDetection.endX > swipeDetection.startX)
-                        direction = 'RIGHT';
-                    else
-                        direction = 'LEFT';
-                }
-                //vertical detection:
-                else if ((((swipeDetection.endY - minY > swipeDetection.startY) || (swipeDetection.endY + minY < swipeDetection.startY)) &&
-                    ((swipeDetection.endX < swipeDetection.startX + maxX) && (swipeDetection.startX > swipeDetection.endX - maxX) &&
-                        (swipeDetection.endY > 0)))) {
-                    if (swipeDetection.endY > swipeDetection.startY)
-                        direction = 'DOWN';
-                    else
-                        direction = 'UP';
-                }
-                //run the callback:
-                if (direction === '')
-                    notSwiped();
+        imagesWrapper.addEventListener('touchcancel', e => {
+            if (this.isInZoom)
+                return;
+            //horizontal detection:
+            if ((((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
+                ((swipeDetection.endY < swipeDetection.startY + maxY) && (swipeDetection.startY > swipeDetection.endY - maxY) &&
+                    (swipeDetection.endX > 0)))) {
+                if (swipeDetection.endX > swipeDetection.startX)
+                    direction = 'RIGHT';
                 else
-                    onSwipe(direction);
-                swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
-                direction = '';
-                scrollPosition = wrapperInfo.left;
-            });
+                    direction = 'LEFT';
+            }
+            //vertical detection:
+            else if ((((swipeDetection.endY - minY > swipeDetection.startY) || (swipeDetection.endY + minY < swipeDetection.startY)) &&
+                ((swipeDetection.endX < swipeDetection.startX + maxX) && (swipeDetection.startX > swipeDetection.endX - maxX) &&
+                    (swipeDetection.endY > 0)))) {
+                if (swipeDetection.endY > swipeDetection.startY)
+                    direction = 'DOWN';
+                else
+                    direction = 'UP';
+            }
+            //run the callback:
+            if (direction === '')
+                notSwiped();
+            else
+                onSwipe(direction);
+            swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
+            direction = '';
+            scrollPosition = wrapperInfo.left;
         });
     }
     //addEventToHudAndZoom:
