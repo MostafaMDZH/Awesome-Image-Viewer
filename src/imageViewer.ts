@@ -79,6 +79,11 @@ export default class ImageViewer{
 
         //swipe event:
         this.addEventToSwipe((direction) => {
+            this.isSwiping = true;
+            setTimeout(() => {
+                this.isSwiping = false;
+            }, 500);
+            
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
             // setTimeout(()=>{
@@ -364,10 +369,6 @@ export default class ImageViewer{
         });
         imagesWrapper.addEventListener('touchend', e => {
             if(this.isInZoom) return;
-            this.isSwiping = true;
-            setTimeout(() => {
-                this.isSwiping = false;
-            }, 100);
             //horizontal detection:
             if(
                 (((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
