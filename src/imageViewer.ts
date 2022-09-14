@@ -83,7 +83,7 @@ export default class ImageViewer{
             direction === 'RIGHT' ? index-- : index++;
             setTimeout(()=>{
                 this.selectImage(index);
-            }, 100);
+            }, 200);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
@@ -365,10 +365,10 @@ export default class ImageViewer{
             // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
-            thisView.isSwiping = true;
-            setTimeout(() => {
-                thisView.isSwiping = false;
-            }, 500);
+            // thisView.isSwiping = true;
+            // setTimeout(() => {
+            //     thisView.isSwiping = false;
+            // }, 500);
 
 
             if(this.isInZoom) return;
