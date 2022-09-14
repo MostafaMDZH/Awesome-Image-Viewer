@@ -36,9 +36,9 @@ class ImageViewer {
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            setTimeout(() => {
-                this.selectImage(index);
-            }, 25);
+            // setTimeout(() => {
+            this.selectImage(index);
+            // }, 25);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -236,7 +236,9 @@ class ImageViewer {
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width) / 2;
-        imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
+        setTimeout(() => {
+            imagesWrapper.scrollTo({ left: imageCenterPosition, behavior: 'smooth' });
+        }, 25);
     }
     //setDescription:
     setDescription(text) {
@@ -289,7 +291,7 @@ class ImageViewer {
         imagesWrapper.addEventListener('touchmove', e => {
             if (this.isInZoom)
                 return;
-            // e.preventDefault();
+            e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
             swipeDetection.endY = touch.screenY;
