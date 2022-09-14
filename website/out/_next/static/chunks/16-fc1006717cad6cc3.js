@@ -375,7 +375,7 @@
     padding-left: 10px;
     padding-right: 10px;
     height: 80px;
-    overflow: hidden;
+    overflow: scroll;
     display: flex;
     gap: 12px;
   }
