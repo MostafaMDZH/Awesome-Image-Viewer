@@ -32,6 +32,7 @@ export default class ImageViewer {
     protected isHudShow: boolean;
     protected dbcTimer: NodeJS.Timeout;
     protected dbcWaiting: boolean;
+    protected isSwiping: boolean;
     protected style?: object;
     constructor(parameters: constructorParameters);
     protected static appendCSS(): void;

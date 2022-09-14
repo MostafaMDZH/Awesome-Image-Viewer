@@ -21,6 +21,7 @@ class ImageViewer {
         this.isHudShow = true;
         this.dbcTimer = setTimeout(() => { }, 0);
         this.dbcWaiting = false;
+        this.isSwiping = false;
         //show images:
         this.showImages();
         //show toolbar:
@@ -35,9 +36,9 @@ class ImageViewer {
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            setTimeout(() => {
-                this.selectImage(index);
-            }, 15);
+            // setTimeout(() => {
+            this.selectImage(index);
+            // }, 25);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -286,7 +287,7 @@ class ImageViewer {
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            if (this.isInZoom)
+            if (this.isInZoom || this.isSwiping)
                 return;
             e.preventDefault();
             let touch = e.touches[0];
@@ -297,6 +298,10 @@ class ImageViewer {
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
+            this.isSwiping = true;
+            setTimeout(() => {
+                this.isSwiping = false;
+            }, 200);
             if (this.isInZoom)
                 return;
             //horizontal detection:
