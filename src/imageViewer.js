@@ -295,7 +295,7 @@ class ImageViewer {
             let touchChange = swipeDetection.startX - touch.screenX;
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
-        imagesWrapper.addEventListener('touchcancel', e => {
+        imagesWrapper.addEventListener('touchend', e => {
             if (this.isInZoom)
                 return;
             //horizontal detection:
