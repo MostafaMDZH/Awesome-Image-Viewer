@@ -80,7 +80,6 @@
                     height: auto;
                     max-height: 100%;
                     cursor: pointer;
-                    transition: width 100ms ease-in-out, height 100ms ease-in-out;
                 }
             }.stretch{
                 > .image{
@@ -192,7 +191,7 @@
             > .description{
                 padding: 2px 10px;
                 background-color: rgba(0,0,0,.7);
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 color: #fafafa;
                 border-radius: 2px;
             }
@@ -285,6 +284,11 @@
             > .arrowButton{
                 @extend .darkTransparentBackground;
                 width: 65px;
+            }
+            > .footer{
+                > .description{
+                    font-size: 1rem;
+                }
             }
         }
     }

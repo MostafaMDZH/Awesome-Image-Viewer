@@ -377,12 +377,8 @@ class ImageViewer {
         if (!imageContainer.classList.contains('zoom')) {
             imageContainer.classList.add('zoom');
             const image = imageContainer.getElementsByClassName('image')[0];
-            // imageContainer!.scrollTop = (image.offsetHeight / 2) - (imageContainer.offsetHeight / 2) + (clickY - (imageContainer.offsetHeight / 2))*(image.offsetHeight/imageContainer.offsetHeight);
-            // imageContainer!.scrollLeft = (image.offsetWidth / 2) - (imageContainer.offsetWidth / 2) + (clickX - (imageContainer.offsetWidth / 2))*(image.offsetWidth/imageContainer.offsetWidth);
-            const sTop = (image.offsetHeight / 2) - (imageContainer.offsetHeight / 2) + (clickY - (imageContainer.offsetHeight / 2)) * (image.offsetHeight / imageContainer.offsetHeight);
-            const sLeft = (image.offsetWidth / 2) - (imageContainer.offsetWidth / 2) + (clickX - (imageContainer.offsetWidth / 2)) * (image.offsetWidth / imageContainer.offsetWidth);
-            imageContainer.scrollTo({ top: sTop, behavior: 'smooth' });
-            imageContainer.scrollTo({ left: sLeft, behavior: 'smooth' });
+            imageContainer.scrollTop = (image.offsetHeight / 2) - (imageContainer.offsetHeight / 2) + (clickY - (imageContainer.offsetHeight / 2)) * (image.offsetHeight / imageContainer.offsetHeight);
+            imageContainer.scrollLeft = (image.offsetWidth / 2) - (imageContainer.offsetWidth / 2) + (clickX - (imageContainer.offsetWidth / 2)) * (image.offsetWidth / imageContainer.offsetWidth);
             this.isInZoom = true;
             this.flipHud(false);
             this.view.classList.add('halfHud');
@@ -661,7 +657,6 @@ const Style = `
     height: auto;
     max-height: 100%;
     cursor: pointer;
-    transition: width 100ms ease-in-out, height 100ms ease-in-out;
   }
   .imageViewer > .container > .imagesWrapper .stretch > .image {
     width: 100%;
@@ -777,7 +772,7 @@ const Style = `
   .imageViewer > .container > .footer > .description {
     padding: 2px 10px;
     background-color: rgba(0, 0, 0, 0.7);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #fafafa;
     border-radius: 2px;
   }
@@ -850,6 +845,9 @@ const Style = `
     }
     .imageViewer > .container > .arrowButton {
       width: 65px;
+    }
+    .imageViewer > .container > .footer > .description {
+      font-size: 1rem;
     }
   }
   @media (orientation: landscape) and (max-height: 450px) {
