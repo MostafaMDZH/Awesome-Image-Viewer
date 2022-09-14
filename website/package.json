@@ -13,7 +13,7 @@
     "export": "next export"
   },
   "dependencies": {
-    "awesome-image-viewer": "^1.0.9",
+    "awesome-image-viewer": "^1.0.10",
     "awesome-snackbar": "^2.0.3",
     "next": "12.2.3",
     "react": "18.2.0",

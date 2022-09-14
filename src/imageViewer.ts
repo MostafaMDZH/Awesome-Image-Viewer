@@ -35,6 +35,7 @@ export default class ImageViewer{
     protected isHudShow:       boolean;
     protected dbcTimer;
     protected dbcWaiting:      boolean;
+    protected isSwiping:       boolean;
     protected style?:          object;
 
     //constructor:
@@ -59,6 +60,7 @@ export default class ImageViewer{
         this.isHudShow       = true;
         this.dbcTimer        = setTimeout(()=>{}, 0);
         this.dbcWaiting      = false;
+        this.isSwiping       = false;
 
         //show images:
         this.showImages();
@@ -77,11 +79,16 @@ export default class ImageViewer{
 
         //swipe event:
         this.addEventToSwipe((direction) => {
+            this.isSwiping = true;
+            setTimeout(() => {
+                this.isSwiping = false;
+            }, 500);
+            
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
             setTimeout(()=>{
                 this.selectImage(index);
-            }, 60);
+            }, 30);
         }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
@@ -358,7 +365,8 @@ export default class ImageViewer{
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            if(!this.isSwiping)
+                imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
             if(this.isInZoom) return;
