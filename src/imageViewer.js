@@ -253,7 +253,7 @@ class ImageViewer {
         const thumbnail = this.view.querySelector('[data-index="' + index + '"]');
         if (thumbnail !== null) {
             thumbnail.classList.add('selected');
-            this.scrollThumbnail(index);
+            // this.scrollThumbnail(index);
         }
     }
     //scrollThumbnail:
