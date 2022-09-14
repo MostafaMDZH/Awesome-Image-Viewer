@@ -77,15 +77,12 @@ export default class ImageViewer{
 
         //swipe event:
         this.addEventToSwipe((direction) => {
-
-            alert('swiped: ' + direction);
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            this.selectImage(index);
-        }, () => {
-            alert("doesn't swiped");
-            this.selectImage(this.currentSelected)
-        });
+            setTimeout(()=>{
+                this.selectImage(index);
+            }, 100);
+        }, () => this.selectImage(this.currentSelected));
         
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -364,7 +361,6 @@ export default class ImageViewer{
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
-            alert('touchend');
             if(this.isInZoom) return;
             //horizontal detection:
             if(
