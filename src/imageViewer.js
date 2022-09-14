@@ -21,6 +21,7 @@ class ImageViewer {
         this.isHudShow = true;
         this.dbcTimer = setTimeout(() => { }, 0);
         this.dbcWaiting = false;
+        this.isSwiping = false;
         //show images:
         this.showImages();
         //show toolbar:
@@ -35,9 +36,9 @@ class ImageViewer {
         this.addEventToSwipe((direction) => {
             let index = this.currentSelected;
             direction === 'RIGHT' ? index-- : index++;
-            setTimeout(() => {
-                this.selectImage(index);
-            }, 10);
+            // setTimeout(()=>{
+            this.selectImage(index);
+            // }, 100);
         }, () => this.selectImage(this.currentSelected));
         //hud and zoom events:
         this.addEventToHudAndZoom();
@@ -264,6 +265,7 @@ class ImageViewer {
     }
     //onSwipe:
     addEventToSwipe(onSwipe, notSwiped) {
+        const thisView = this;
         let swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
         let minX = 30; //min x swipe for horizontal swipe
         let maxX = 30; //max x difference for vertical swipe
@@ -286,7 +288,8 @@ class ImageViewer {
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            if (this.isInZoom)
+            // alert('here');
+            if (this.isInZoom || this.isSwiping)
                 return;
             e.preventDefault();
             let touch = e.touches[0];
@@ -297,8 +300,15 @@ class ImageViewer {
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
+            thisView.isSwiping = true;
+            setTimeout(() => {
+                thisView.isSwiping = false;
+            }, 500);
             if (this.isInZoom)
                 return;
+            let touch = e.touches[0];
+            swipeDetection.endX = touch.screenX;
+            swipeDetection.endY = touch.screenY;
             //horizontal detection:
             if ((((swipeDetection.endX - minX > swipeDetection.startX) || (swipeDetection.endX + minX < swipeDetection.startX)) &&
                 ((swipeDetection.endY < swipeDetection.startY + maxY) && (swipeDetection.startY > swipeDetection.endY - maxY) &&
