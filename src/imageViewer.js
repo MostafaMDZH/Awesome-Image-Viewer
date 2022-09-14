@@ -646,7 +646,7 @@ const Style = `
     left: 0;
     display: flex;
     gap: 100px;
-    overflow: scroll;
+    overflow: hidden;
   }
   .imageViewer > .container > .imagesWrapper > .imageContainer {
     min-width: 100%;
