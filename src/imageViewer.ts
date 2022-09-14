@@ -273,7 +273,9 @@ export default class ImageViewer{
     //selectImage:
     protected selectImage(index:number){
         if(index < 0 || index > this.images.length - 1 || this.isInZoom) return;
-        this.currentSelected = index;
+        setTimeout(() => {
+            this.currentSelected = index;
+        }, 300);
         this.loadImage(index-1);
         this.loadImage(index);
         this.loadImage(index+1);
@@ -390,6 +392,7 @@ export default class ImageViewer{
             else onSwipe(direction);
             swipeDetection = { startX: 0, startY: 0, endX: 0, endY: 0 };
             direction = '';
+            scrollPosition = wrapperInfo.left;
         });
     }
 
