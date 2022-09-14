@@ -361,7 +361,7 @@ export default class ImageViewer{
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
             thisView.isSwiping = true;
