@@ -128,7 +128,7 @@ export default class ImageViewer{
                 <div class="shadow"></div>
                 <div class="container">
                     <div class="imagesWrapper"></div>
-                    <button class="swipeSurface"></button>
+                    <button class="touchSurface"></button>
                     <div class="toolbar">
                         <button class="defaultButton closeButton" title="Close"><div><svg fill="#bfbfbf" width="21" height="21" viewBox="-1 -2 18 18" xmlns="http://www.w3.org/2000/svg"><path d="m11.2929 3.29289c.3905-.39052 1.0237-.39052 1.4142 0 .3905.39053.3905 1.02369 0 1.41422l-3.29289 3.29289 3.29289 3.2929c.3905.3905.3905 1.0237 0 1.4142s-1.0237.3905-1.4142 0l-3.2929-3.29289-3.29289 3.29289c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142l3.2929-3.2929-3.2929-3.29289c-.39052-.39053-.39052-1.02369 0-1.41422.39053-.39052 1.02369-.39052 1.41422 0l3.29289 3.2929z" fill-rule="evenodd"/></svg></div></button>
                         ${isZoomable ? `
@@ -233,11 +233,11 @@ export default class ImageViewer{
         });
 
         //navigation with arrow buttons:
-        const imageContainers = this.view.querySelectorAll('.imageContainer, .arrowButton, .thumbnailContainer');
-        const firstContainer = <HTMLElement> imageContainers[0];
-        setTimeout(() => firstContainer.focus(), 100);
-        imageContainers.forEach(container => {
-            container.addEventListener('keydown', e => {
+        const elements = this.view.querySelectorAll('.touchSurface, .imageContainer, .arrowButton, .thumbnailContainer');
+        const firstElement = <HTMLElement> elements[0];
+        setTimeout(() => firstElement.focus(), 100);
+        elements.forEach(element => {
+            element.addEventListener('keydown', e => {
                 const event  = <KeyboardEvent> e;
                 if(event.key === 'ArrowLeft'){
                     e.preventDefault();
@@ -341,8 +341,8 @@ export default class ImageViewer{
         let wrapperInfo = imagesWrapper.getBoundingClientRect();
         let scrollPosition = wrapperInfo.left;
         //events:
-        const swipeSurface = <HTMLElement> this.view.getElementsByClassName('swipeSurface')[0];
-        swipeSurface.addEventListener('touchstart', e => {
+        const touchSurface = <HTMLElement> this.view.getElementsByClassName('touchSurface')[0];
+        touchSurface.addEventListener('touchstart', e => {
             if(this.isInZoom) return;
             let touch = e.touches[0];
             swipeDetection.startX = touch.screenX;
@@ -352,7 +352,7 @@ export default class ImageViewer{
             const currentImage = <HTMLElement> images.item(this.currentSelected);
             scrollPosition = currentImage.offsetLeft;
         });
-        swipeSurface.addEventListener('touchmove', e => {
+        touchSurface.addEventListener('touchmove', e => {
             if(this.isInZoom) return;
             e.preventDefault();
             let touch = e.touches[0];
@@ -362,7 +362,7 @@ export default class ImageViewer{
             let touchChange = swipeDetection.startX - touch.screenX;
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
-        swipeSurface.addEventListener('touchend', e => {
+        touchSurface.addEventListener('touchend', e => {
             if(this.isInZoom) return;
             //horizontal detection:
             if(
@@ -392,8 +392,8 @@ export default class ImageViewer{
 
     //addEventToHudAndZoom:
     protected addEventToHudAndZoom(){
-        const swipeSurface = <HTMLElement> this.view.getElementsByClassName('swipeSurface')[0];
-        swipeSurface.addEventListener('click', e => {
+        const touchSurface = <HTMLElement> this.view.getElementsByClassName('touchSurface')[0];
+        touchSurface.addEventListener('click', e => {
             e.stopPropagation();
             if(!this.dbcWaiting){
                 this.dbcWaiting = true;
@@ -740,7 +740,7 @@ const Style = `
     max-height: unset;
     margin-bottom: -20px;
   }
-  .imageViewer > .container > .swipeSurface {
+  .imageViewer > .container > .touchSurface {
     width: 100%;
     height: 100%;
     position: absolute;
