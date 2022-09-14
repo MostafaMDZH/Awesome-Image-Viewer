@@ -355,7 +355,8 @@ export default class ImageViewer{
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            if(this.isInZoom || this.isSwiping) return;
+            if(this.isInZoom) return;
+            // if(this.isInZoom || this.isSwiping) return;
             e.preventDefault();
             let touch = e.touches[0];
             swipeDetection.endX = touch.screenX;
@@ -365,10 +366,10 @@ export default class ImageViewer{
             imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
-            this.isSwiping = true;
-            setTimeout(() => {
-                this.isSwiping = false;
-            }, 200);
+            // this.isSwiping = true;
+            // setTimeout(() => {
+            //     this.isSwiping = false;
+            // }, 200);
             if(this.isInZoom) return;
             //horizontal detection:
             if(
