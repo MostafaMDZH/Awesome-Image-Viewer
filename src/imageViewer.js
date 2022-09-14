@@ -288,22 +288,20 @@ class ImageViewer {
             scrollPosition = currentImage.offsetLeft;
         });
         imagesWrapper.addEventListener('touchmove', e => {
-            // alert('here');
-            if (this.isInZoom || this.isSwiping)
-                return;
-            e.preventDefault();
-            let touch = e.touches[0];
-            swipeDetection.endX = touch.screenX;
-            swipeDetection.endY = touch.screenY;
-            //sync the scroll with touch:
-            let touchChange = swipeDetection.startX - touch.screenX;
-            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            // if(this.isInZoom || this.isSwiping) return;
+            // e.preventDefault();
+            // let touch = e.touches[0];
+            // swipeDetection.endX = touch.screenX;
+            // swipeDetection.endY = touch.screenY;
+            // //sync the scroll with touch:
+            // let touchChange = swipeDetection.startX - touch.screenX;
+            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
-            thisView.isSwiping = true;
-            setTimeout(() => {
-                thisView.isSwiping = false;
-            }, 500);
+            // thisView.isSwiping = true;
+            // setTimeout(() => {
+            //     thisView.isSwiping = false;
+            // }, 500);
             if (this.isInZoom)
                 return;
             let touch = e.touches[0];

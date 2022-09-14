@@ -1,7 +1,7 @@
 {
   "name": "awesome-image-viewer",
   "description": "React, Angular, Vue, and Typescript compatible image viewer",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "author": "Mostafa Mohammadzadeh",
   "license": "MIT",
   "main": "src/imageViewer.js",
