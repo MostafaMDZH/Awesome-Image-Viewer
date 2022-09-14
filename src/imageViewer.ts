@@ -300,11 +300,7 @@ export default class ImageViewer{
         const imageContainer = <HTMLElement> imageContainers.item(index);
         const imageCenterPosition = imageContainer.offsetLeft - (imagesWrapper.getBoundingClientRect().width - imageContainer.getBoundingClientRect().width)/2;
         imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'});
-        setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 5);
-        setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 10);
-        setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 15);
-        setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 20);
-        setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 25);
+        // setTimeout(() => imagesWrapper.scrollTo({left: imageCenterPosition, behavior: 'smooth'}), 25);
     }
 
     //setDescription:
@@ -365,7 +361,7 @@ export default class ImageViewer{
             swipeDetection.endY = touch.screenY;
             //sync the scroll with touch:
             let touchChange = swipeDetection.startX - touch.screenX;
-            imagesWrapper.scrollLeft = scrollPosition + touchChange;
+            // imagesWrapper.scrollLeft = scrollPosition + touchChange;
         });
         imagesWrapper.addEventListener('touchend', e => {
             if(this.isInZoom) return;
