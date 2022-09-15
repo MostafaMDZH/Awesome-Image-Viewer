@@ -1,7 +1,7 @@
 {
   "name": "awesome-image-viewer",
   "description": "React, Angular, Vue, and Typescript compatible image viewer",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "author": "Mostafa Mohammadzadeh",
   "license": "MIT",
   "main": "src/imageViewer.js",
@@ -9,9 +9,7 @@
   "scripts": {
     "test": "jest",
     "test-cov": "jest --coverage",
-    "pub": "npm test || npm update && npm publish",
-    "dep": "cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push",
-    "fa_dep": "npm update && npm publish && cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
+    "dep": "npm update && npm publish && cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
   },
   "devDependencies": {
     "jest": "^28.1.3",
