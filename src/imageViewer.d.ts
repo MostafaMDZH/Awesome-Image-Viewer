@@ -60,6 +60,6 @@ export default class ImageViewer {
     setStyle(style?: object): void;
     protected show(): void;
     protected addEventToHide(): void;
-    protected hide(): void;
+    hide(): void;
 }
 export {};

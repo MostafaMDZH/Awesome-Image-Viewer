@@ -503,7 +503,7 @@ export default class ImageViewer{
     }
 
     //hide:
-    protected hide(){
+    public hide(){
         this.view.classList.remove('visible');
         const thisView = this;
         setTimeout(() => {
