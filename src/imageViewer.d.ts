@@ -1,4 +1,3 @@
-/// <reference types="node" />
 declare type image = {
     mainUrl: string;
     thumbnailUrl?: string;
@@ -30,7 +29,7 @@ export default class ImageViewer {
     protected isInZoom: boolean;
     protected stretchImages: boolean;
     protected isHudShow: boolean;
-    protected dbcTimer: NodeJS.Timeout;
+    protected dbcTimer: any;
     protected dbcWaiting: boolean;
     protected isSwiping: boolean;
     protected style?: object;

@@ -33,7 +33,7 @@ export default class ImageViewer{
     protected isInZoom:        boolean;
     protected stretchImages:   boolean;
     protected isHudShow:       boolean;
-    protected dbcTimer;//todo
+    protected dbcTimer:        any;
     protected dbcWaiting:      boolean;
     protected isSwiping:       boolean;
     protected style?:          object;
@@ -438,6 +438,7 @@ export default class ImageViewer{
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         const imageContainers = imagesWrapper.children;
         const imageContainer = <HTMLElement> imageContainers.item(this.currentSelected);
+        const touchSurface = <HTMLElement> this.view.getElementsByClassName('touchSurface')[0];
         if(!imageContainer.classList.contains('zoom')){
             imageContainer.classList.add('zoom');
             const image = <HTMLElement> imageContainer.getElementsByClassName('image')[0];
@@ -446,11 +447,13 @@ export default class ImageViewer{
             this.isInZoom = true;
             this.flipHud(false);
             this.view.classList.add('halfHud');
+            touchSurface.style.display = 'none';
         }else{
             imageContainer.classList.remove('zoom');
             this.isInZoom = false;
             this.flipHud(true);
             this.view.classList.remove('halfHud');
+            touchSurface.style.display = 'block';
         }
     }
 

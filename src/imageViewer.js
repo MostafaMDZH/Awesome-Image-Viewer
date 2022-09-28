@@ -374,6 +374,7 @@ class ImageViewer {
         const imagesWrapper = this.view.getElementsByClassName('imagesWrapper')[0];
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(this.currentSelected);
+        const touchSurface = this.view.getElementsByClassName('touchSurface')[0];
         if (!imageContainer.classList.contains('zoom')) {
             imageContainer.classList.add('zoom');
             const image = imageContainer.getElementsByClassName('image')[0];
@@ -382,12 +383,14 @@ class ImageViewer {
             this.isInZoom = true;
             this.flipHud(false);
             this.view.classList.add('halfHud');
+            touchSurface.style.display = 'none';
         }
         else {
             imageContainer.classList.remove('zoom');
             this.isInZoom = false;
             this.flipHud(true);
             this.view.classList.remove('halfHud');
+            touchSurface.style.display = 'block';
         }
     }
     //flipHud:
