@@ -392,21 +392,25 @@ export default class ImageViewer{
 
     //addEventToHudAndZoom:
     protected addEventToHudAndZoom(){
-        const touchSurface = <HTMLElement> this.view.getElementsByClassName('touchSurface')[0];
-        touchSurface.addEventListener('click', e => {
-            e.stopPropagation();
-            if(!this.dbcWaiting){
-                this.dbcWaiting = true;
-                this.dbcTimer = setTimeout(() => {
-                    if(this.dbcWaiting)
-                        this.flipHud(!this.isHudShow);
+        const touchAndImages = this.view.querySelectorAll('.touchSurface, .image');
+        touchAndImages.forEach(element => {
+            element.addEventListener('click', e => {
+                e.stopPropagation();
+                if(!this.dbcWaiting){
+                    this.dbcWaiting = true;
+                    this.dbcTimer = setTimeout(() => {
+                        //single click:
+                        if(this.dbcWaiting)
+                            this.flipHud(!this.isHudShow);
+                        this.dbcWaiting = false;
+                    }, 200);
+                }else{
+                    //double click:
+                    clearTimeout(this.dbcTimer);
                     this.dbcWaiting = false;
-                }, 200);
-            }else{
-                clearTimeout(this.dbcTimer);
-                this.dbcWaiting = false;
-                this.flipZoom((<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
-            }
+                    this.flipZoom((<MouseEvent> e).clientX, (<MouseEvent> e).clientY);
+                }
+            });
         });
 
         //zoom button:
