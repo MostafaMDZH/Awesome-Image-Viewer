@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "test-cov": "jest --coverage",
-    "dep": "npm update && npm publish && cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
+    "deploy": "npm update && npm publish && cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
   },
   "devDependencies": {
     "jest": "^28.1.3",
