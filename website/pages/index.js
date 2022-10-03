@@ -77,13 +77,13 @@ export default function Main(){
                     {/* content */}
                     <div id='content'>
 
-                        <a href='https://github.com/MostafaMDZH/Awesome-ImageViewer' id='github'>Github</a>
+                        <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer' id='github'>Github</a>
 
                         {/* intro */}
                         <h3 id='awesome'><Link href='/'>Awesome</Link></h3>
                         <div id='name-versionWrapper'>
                             <h1 id='appName'><Link href='/'>Image Viewer</Link></h1>
-                            <a id='version'>V1.0.57</a>
+                            <a id='version'>V1.0.58</a>
                         </div>
                         <p className='sectionDescription'>React, Angular, Vue, and Typescript compatible image viewer</p>
 
