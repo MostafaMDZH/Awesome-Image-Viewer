@@ -1,8 +1,14 @@
+## Bug:
+- Thumbnails width on firefox
+- Thumbnails scrollbar
+- Red scrollbar on document
+
 ## Features:
-- hide() and onHide() functions
-- custom style
-- move by scroll wheel
-- thumbnail while loading
-- downloadable
-- arrow for thumbnail list
-- back nav on #url
+- Back with escape button
+- Back nav on #url
+- Hide() and onHide() functions
+- Custom style
+- Move by scroll wheel
+- Thumbnail while loading
+- Downloadable
+- Arrow for thumbnail list
