@@ -52,8 +52,8 @@ export default function Main(){
 
             {/* header */}
             <header id='header'>
-                <Link href='https://awesome-components.demos.mostafa-mdzh.ir/'><a className='headerLink'>Awesome Components</a></Link>
-                <Link href='https://www.buymeacoffee.com/mostafamdzh'><a className='headerLink' id='coffee'>buy me a coffee! :)</a></Link>
+                <Link href='https://awesome-components.com'><a className='headerLink'>Awesome Components</a></Link>
+                <Link href='https://buymeacoffee.com/mostafamdzh'><a className='headerLink' id='coffee'>buy me a coffee! :)</a></Link>
             </header>
 
             <div className='container' id='intro'>
@@ -329,8 +329,8 @@ export default function Main(){
             <footer id='footer'>
                 <p>Made with ♡ by <a href='https://github.com/MostafaMDZH'>Mostafa Mohammadzadeh</a></p>
                 <p id='dash'>-</p>
-                <p id='githubLink'>Source on <a href='https://github.com/MostafaMDZH/Awesome-ImageViewer'>Github</a></p>
-                <p id='awesomeComponents'>From <Link href='https://awesome-components.demos.mostafa-mdzh.ir/'><a>Awesome Components</a></Link></p>
+                <p id='githubLink'>Source on <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer'>Github</a></p>
+                <p id='awesomeComponents'>From <Link href='https://awesome-components.com'><a>Awesome Components</a></Link></p>
             </footer>
             
         </div>
