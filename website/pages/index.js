@@ -26,7 +26,7 @@ export default function Main(){
     const cookies = new Cookies();
     setTimeout(() => {
         if(isWelcomeSbShow) return;
-        if(cookies.get('WelcomeSB') !== undefined) return;
+        if(cookies.get('IV_WelcomeMsg') !== undefined) return;
         isWelcomeSbShow = true;
         new Snackbar('Welcome to Awesome Image Viewer! 👋', {
             position: 'top-center',
@@ -36,7 +36,7 @@ export default function Main(){
                     position: 'top-center',
                     timeout: 0,
                     actionText: 'Got it',
-                    onAction: () => cookies.set('WelcomeSB', 'yes', { path: '/', maxAge: 1000*24*60*60 })
+                    onAction: () => cookies.set('IV_WelcomeMsg', 'yes', { path: '/', maxAge: 1000*24*60*60 })
                 });
             }
         });
