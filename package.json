@@ -1,7 +1,7 @@
 {
   "name": "awesome-image-viewer",
   "description": "React, Angular, Vue, and Typescript compatible image viewer",
-  "version": "1.0.56",
+  "version": "1.0.57",
   "author": "Mostafa Mohammadzadeh",
   "license": "MIT",
   "main": "src/imageViewer.js",
@@ -47,7 +47,7 @@
     "type": "git",
     "url": "git+https://github.com/MostafaMDZH/Awesome-Image-Viewer.git"
   },
-  "homepage": "https://awesome-image-viewer.demos.mostafa-mdzh.ir",
+  "homepage": "https://image-viewer.awesome-components.com",
   "bugs": {
     "url": "https://github.com/MostafaMDZH/Awesome-Image-Viewer/issues"
   }
