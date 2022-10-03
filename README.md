@@ -1,8 +1,8 @@
-# Awesome Image Viewer
+# Awesome Image Viewer [ <a href='https://image-viewer.awesome-components.com'>Docs & Demo</a> | <a href='https://npmjs.com/package/awesome-image-viewer'>NPM</a> ]
 React, Angular, Vue, and Typescript compatible image viewer<br>
 @MostafaMDZH | mostafa.mdzh@gmail.com</br></br>
 
-## Features <a href='https://awesome-image-viewer.demos.mostafa-mdzh.ir'>[Docs & Demo]</a>
+## Features
 - Lazy Loading
 - Zoomable
 - Custom Buttons
