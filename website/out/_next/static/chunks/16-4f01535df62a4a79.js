@@ -50,6 +50,10 @@
       background: #555;
     }
   }
+  .hiddenScrollbar, .imageViewer > .container > .footer > .thumbnailsWrapper, .imageViewer > .container > .imagesWrapper > .imageContainer, .imageViewer > .container > .imagesWrapper {
+    scrollbar-width: none;
+  }
+  
   .hiddenScrollbar::-webkit-scrollbar, .imageViewer > .container > .footer > .thumbnailsWrapper::-webkit-scrollbar, .imageViewer > .container > .imagesWrapper > .imageContainer::-webkit-scrollbar, .imageViewer > .container > .imagesWrapper::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -381,7 +385,9 @@
   }
   .imageViewer > .container > .footer > .thumbnailsWrapper > .thumbnailContainer > .thumbnail {
     width: auto;
-    height: calc(100% - 10px);
+    max-width: 120px;
+    height: auto;
+    max-height: 70px;
     border: solid 3px transparent;
     border-radius: 3px;
     cursor: pointer;
