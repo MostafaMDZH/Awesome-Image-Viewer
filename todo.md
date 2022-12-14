@@ -1,10 +1,15 @@
+## Bug:
+- Alert for compname.css.map on react
+
 ## Features:
-- Move touch surface under the images
+- Documents: scrollable code segments on mobile
+- Unique id/class
+- Move touch surface under the images(downloadable option)
 - Back with escape button
-- Back nav on #url
 - Hide() and onHide() functions
-- Custom style
 - Move by scroll wheel
 - Thumbnail while loading
-- Downloadable
 - Arrow for thumbnail list
+
+## Future:
+- Close on mobile back(optional)
