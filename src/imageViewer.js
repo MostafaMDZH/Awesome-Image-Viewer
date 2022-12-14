@@ -877,5 +877,5 @@ const Style = `
     .imageViewer > .container > .footer {
       bottom: 5px;
     }
-  }/*# sourceMappingURL=imageViewer.css.map */
+  }
 `;
