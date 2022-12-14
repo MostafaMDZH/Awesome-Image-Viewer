@@ -1,8 +1,7 @@
 ## Features:
-- Documents: scrollable code segments on mobile
 - Unique id/class
-- Move touch surface under the images(downloadable option)
 - Back with escape button
+- Move touch surface under the images(downloadable option)
 - Hide() and onHide() functions
 - Move by scroll wheel
 - Thumbnail while loading
