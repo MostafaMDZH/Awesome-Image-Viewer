@@ -16,3 +16,5 @@ React, Angular, Vue, and Typescript compatible image viewer<br>
 - Dynamic HTML
 - Lightweight
 - Zero Dependency
+
+Check out other components at: <a href='https://awesome-components.com/'>awesome-components.com</a>
