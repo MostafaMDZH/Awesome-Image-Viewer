@@ -200,7 +200,7 @@ class ImageViewer {
             thumbnailHtml.addEventListener('click', e => {
                 e.stopPropagation();
                 const tar = e.target;
-                const index = tar.dataset.index;
+                const index = tar.dataset['index'];
                 this.selectImage(parseInt(index !== null && index !== void 0 ? index : '0'));
             });
             i++;
@@ -225,7 +225,7 @@ class ImageViewer {
         const imagesWrapper = this.view.getElementsByClassName('imagesWrapper')[0];
         const imageContainers = imagesWrapper.children;
         const imageContainer = imageContainers.item(index);
-        const url = imageContainer.dataset.url;
+        const url = imageContainer.dataset['url'];
         const image = imageContainer.getElementsByClassName('image')[0];
         image.src = url;
     }

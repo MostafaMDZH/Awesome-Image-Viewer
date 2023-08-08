@@ -262,7 +262,7 @@ export default class ImageViewer{
             thumbnailHtml.addEventListener('click', e => {
                 e.stopPropagation();
                 const tar = <HTMLHtmlElement> e.target;
-                const index = tar.dataset.index;
+                const index = tar.dataset['index'];
                 this.selectImage(parseInt(index ?? '0'));
             });
             i++;
@@ -287,7 +287,7 @@ export default class ImageViewer{
         const imagesWrapper = <HTMLElement> this.view.getElementsByClassName('imagesWrapper')[0];
         const imageContainers = imagesWrapper.children;
         const imageContainer = <HTMLElement> imageContainers.item(index);
-        const url = imageContainer.dataset.url;
+        const url = imageContainer.dataset['url'];
         const image = <HTMLImageElement> imageContainer.getElementsByClassName('image')[0];
         image.src = url!;
     }
