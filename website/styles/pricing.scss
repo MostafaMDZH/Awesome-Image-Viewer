@@ -48,6 +48,7 @@
         align-items: center;
         background-color: white;
         transition: bottom 0.2s ease;
+        overflow-y: auto;
         > .close{
             width: 45px;
             height: 45px;
@@ -182,5 +183,13 @@
     opacity: 1;
     > .window{
         bottom: 0;
+    }
+}
+
+@media screen and (max-height: 850px){
+    .pricingModal{
+        > .window{
+            transform: translate(-50%, -50%);
+        }
     }
 }
