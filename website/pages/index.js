@@ -6,7 +6,7 @@ import ImageViewer from 'awesome-image-viewer'
 import * as data from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
-import { Pricing } from '../components/pricing'
+import { Pricing } from '../components/pricing/pricing.jsx'
 
 let isWelcomeSbShow = false;
 
@@ -37,12 +37,11 @@ export default function Main(){
                     timeout: 0,
                     actionText: 'Got it',
                     onAction: () => cookies.set('IV_WelcomeMsg', 'yes', { path: '/', maxAge: 1000*24*60*60 })
-                });
+                })
             }
-        });
-    }, 2000);
+        })
+    }, 2000)
     
-    //render:
     return (
         <div id='window' style={{ scrollBehavior: 'smooth' }}>
             <Head>

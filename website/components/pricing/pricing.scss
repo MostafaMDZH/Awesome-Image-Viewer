@@ -54,7 +54,7 @@
             height: 45px;
             border-radius: 50%;
             background-color: transparent;
-            background: transparent url(../public/close.svg) no-repeat center / 20px auto;
+            background: transparent url(../../public/close.svg) no-repeat center / 20px auto;
             transition: all 0.2s ease;
             position: absolute;
             top: 5px;
@@ -132,7 +132,7 @@
                         margin: 0;
                         padding-left: 30px;
                         color: #333;
-                        background: transparent url(../public/check.svg) no-repeat left 2px / 20px auto;
+                        background: transparent url(../../public/check.svg) no-repeat left 2px / 20px auto;
                         > .dollar{
                             font-family: JetBrainsMono-Regular;
                             font-size: .9rem;
