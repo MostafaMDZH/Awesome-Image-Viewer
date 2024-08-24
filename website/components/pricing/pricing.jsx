@@ -3,7 +3,7 @@ import Cookies from "universal-cookie"
 
 export const Pricing = () => {
 
-    const [ isVisible, setIsVisible ] = useState(true) //todo
+    const [ isVisible, setIsVisible ] = useState(false)
 
     useEffect(() => {
         const cookies = new Cookies()
