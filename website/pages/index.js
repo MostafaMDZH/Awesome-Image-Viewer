@@ -6,7 +6,7 @@ import ImageViewer from 'awesome-image-viewer'
 import * as data from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
-import { Pricing } from '../components/pricing/pricing.jsx'
+import { Pricing } from '../components/pricing/pricing'
 
 let isWelcomeSbShow = false;
 
