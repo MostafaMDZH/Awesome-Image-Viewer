@@ -3,7 +3,7 @@
   "description": "Demo and documentation for Awesome Image Viewer npm package",
   "version": "1.0.0",
   "author": "Mostafa Mohammadzadeh",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "dev": "next dev",

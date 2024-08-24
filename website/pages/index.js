@@ -6,9 +6,9 @@ import ImageViewer from 'awesome-image-viewer'
 import * as data from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
+import { Pricing } from '../components/pricing'
 
 let isWelcomeSbShow = false;
-let hasShow = false;
 
 export default function Main(){
 
@@ -44,7 +44,7 @@ export default function Main(){
     
     //render:
     return (
-        <div id='window' style={{scrollBehavior:'smooth'}}>
+        <div id='window' style={{ scrollBehavior: 'smooth' }}>
             <Head>
                 <title>Awesome Image Viewer | React, Angular, Vue, and Typescript compatible image viewer</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -53,10 +53,11 @@ export default function Main(){
             {/* header */}
             <header id='header'>
                 <Link href='https://awesome-components.com'><a className='headerLink'>Awesome Components</a></Link>
-                <Link href='https://buymeacoffee.com/mostafamdzh'><a className='headerLink' id='coffee'>buy me a coffee! :)</a></Link>
+                
             </header>
 
             <div className='container' id='intro'>
+            <Pricing/>
 
                 <div id='main'>
 
@@ -78,6 +79,8 @@ export default function Main(){
                     <div id='content'>
 
                         <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer' id='github'>Github</a>
+                        {/* <PricingButton/> */}
+                        {/* //todo */}
 
                         {/* intro */}
                         <h3 id='awesome'><Link href='/'>Awesome</Link></h3>
