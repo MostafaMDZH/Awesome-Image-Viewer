@@ -34,20 +34,38 @@
     z-index: 10;
     > .window{
         width: 90%;
-        max-width: 390px;
+        max-width: 400px;
         height: 90%;
-        max-height: 540px;
+        max-height: 530px;
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -60%);
+        transform: translate(-50%, -55%);
         border-radius: 10px;
-        padding: 20px;
+        padding: 20px 20px 10px 20px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: white;
         transition: bottom 0.2s ease;
+        > .close{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: transparent;
+            background: transparent url(../public/close.svg) no-repeat center / 20px auto;
+            transition: all 0.2s ease;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+        > .close:hover,
+        > .close:focus{
+            background-color: #f0f0f0;
+        }
+        > .close:active{
+            background-color: #e8e8e8;
+        }
         > .container{
             width: 100%;
             max-width: 330px;
@@ -55,47 +73,80 @@
             max-height: 460px;
             display: flex;
             flex-direction: column;
-            > .imageWrapper{
-                width: 100%;
-                flex: 1.25;
+            
+            > .header{
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                > .image{
-                    width: 100%;
-                    max-width: 225px;
-                    height: 100%;
-                    max-height: 225px;
+                > .itIsNotFree{
+                    margin: 0;
+                    color: #999;
+                    text-align: center;
+                    > .not{
+                        font-weight: bold;
+                    }
+                }
+                > .buyAIV{
+                    margin: 0;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: #444;
+                    text-align: center;
+                }
+                > .priceText{
+                    width: fit-content;
+                    padding: 2px 10px;
+                    margin: 0;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: #444;
+                    text-align: center;
+                    border-radius: 2px;
+                    background-color: rgb(150, 250, 20);
+                    > .dollar{
+                        font-family: JetBrainsMono-Regular;
+                        font-size: 1.1rem;
+                        margin-right: 2px;
+                    }
+                    > .price{
+                        font-size: 1.5rem;
+                    }
                 }
             }
+
+            
             > .bottomArea{
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                > .textsWrapper{
+                margin-top: 30px;
+
+                > .featuresWrapper{
                     width: 100%;
-                    > .massage{
-                        width: 100%;
-                        margin: 10px 0 5px 0;
-                        text-align: center;
-                        font-size: 2.2rem;
-                        font-weight: normal;
-                    }
-                    > .description{
-                        width: 100%;
-                        text-align: center;
-                        font-size: 1.5rem;
-                        line-height: 2.2rem;
-                        font-weight: normal;
-                        color: #999;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    > .featureItem{
+                        margin: 0;
+                        padding-left: 30px;
+                        color: #333;
+                        background: transparent url(../public/check.svg) no-repeat left 2px / 20px auto;
+                        > .dollar{
+                            font-family: JetBrainsMono-Regular;
+                            font-size: .9rem;
+                            margin-right: 1px;
+                        }
+                        > .price{
+                            font-size: 1.1rem;
+                        }
                     }
                 }
                 > .buttonWrapper{
                     width: 100%;
-                    margin-top: 8px;
                     display: flex;
                     justify-content: center;
+                    margin-top: 35px;
                     > .buyButton{
                         width: 170px;
                         height: 40px;
@@ -112,6 +163,13 @@
                     > .buyButton:active{
                         background-color: rgb(0, 80, 160);
                     }
+                }
+                > .note{
+                    margin: 0;
+                    margin-top: 10px;
+                    font-size: .9rem;
+                    color: #aaa;
+                    text-align: center;
                 }
             }
         }

@@ -3,7 +3,7 @@ import Cookies from "universal-cookie"
 
 export const Pricing = () => {
 
-    const [ isVisible, setIsVisible ] = useState(false)
+    const [ isVisible, setIsVisible ] = useState(true) //todo
 
     useEffect(() => {
         const cookies = new Cookies()
@@ -32,7 +32,7 @@ export const Pricing = () => {
                 id="pricingButton"
                 onClick={openModal}
             >
-                Pricing
+                Buy it for $1
             </button>
 
             <PricingModal
@@ -51,22 +51,38 @@ const PricingModal = ({ isVisible, onClose }) => {
     }
 
     return (
-        <div className={'pricingModal' + (isVisible ? ' visible' : '')} onClick={e => e.stopPropagation()}>
-            <div className='window'>
-                <div className='container'>
-                    <div className='imageWrapper'>
-                        <span className='image'></span>
-                    </div>
-                    <div className='bottomArea'>
-                        <div className='textsWrapper'>
-                            <h2 className='massage'>This website uses cookies!</h2>
-                            <p  className='description'>We use cookies in order to personalize your site experience.</p>
-                        </div>
+        <div
+            className={'pricingModal' + (isVisible ? ' visible' : '')}
+            onClick={onClose}
+        >
+            <div className='window' onClick={e => e.stopPropagation()}>
 
+                <button className="close" onClick={onClose}/>
+
+                <div className='container'>
+
+                    <div className="header">
+                        <p className="itIsNotFree">This component is <a className="not">NOT</a> free!</p>
+                        <p className="buyAIV">Buy Awesome Image Viewer</p>
+                        <p className="priceText">For Just <a className="dollar">$</a><a className="price">1</a> !</p>
+                    </div>
+
+                    <div className='bottomArea'>
+                        
+                        <div className="featuresWrapper">
+                            <a className="featureItem">One-time purchase</a>
+                            <a className="featureItem">Use in unlimited projects</a>
+                            <a className="featureItem">Access to future updates</a>
+                            <a className="featureItem">Fork and customization</a>
+                            <a className="featureItem">Lifetime money back guarantee!</a>
+                            <a className="featureItem">Save at least 2 work days with just <a className="dollar">$</a><a className="price">1</a></a>
+                        </div>
 
                         <div className='buttonWrapper'>
                             <input type='button' className='buyButton' value='Buy' onClick={goToStripe}/>
                         </div>
+
+                        <p className="note">If you are from countries that cannot pay online, you can use it for free.</p>
 
                     </div>
                 </div>
