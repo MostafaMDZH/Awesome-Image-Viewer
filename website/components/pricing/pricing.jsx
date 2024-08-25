@@ -21,7 +21,8 @@ export const PricingButton = () => {
         //popup timer:
         setTimeout(() => {
             if(cookies.get('pricingPopupShowed') === undefined){
-                setIsVisible(true)
+                const modal = document.getElementById('pricingModal')
+                modal.classList.add('visible')
             }
             setPopupShowedCookie()
         }, 30000)
