@@ -55,7 +55,7 @@ export const PricingButton = () => {
                 {isPurchased ? (
                     '✓ Purchased'
                 ) : (
-                    <a>Buy it for just <a className="dollar">$</a><a className="price">5</a></a>
+                    <a>Buy it for just <a className="dollar">$</a><a className="price">1</a></a>
                 )}
             </button>
 
@@ -67,7 +67,8 @@ export const PricingModal = () => {
 
     const goToPayment = () => {
         // window.location = 'https://buy.stripe.com/test_5kAeXM1Xh4ra4iA000'
-        window.location = 'https://buymeacoffee.com/mostafamdzh'
+        // window.location = 'https://buymeacoffee.com/mostafamdzh'
+        window.location = 'https://buymeacoffee.com/mostafamdzh/e/294424'
     }
 
     const closeModal = () => {
@@ -89,7 +90,7 @@ export const PricingModal = () => {
                     <div className="header">
                         <p className="itIsNotFree">This component is <a className="not">NOT</a> free!</p>
                         <p className="buyAIV">Buy Awesome Image Viewer</p>
-                        <p className="priceText">For Just <a className="dollar">$</a><a className="price">5</a> !</p>
+                        <p className="priceText">For Just <a className="dollar">$</a><a className="price">1</a> !</p>
                     </div>
 
                     <div className='bottomArea'>
@@ -100,7 +101,7 @@ export const PricingModal = () => {
                             <a className="featureItem">Access to future updates</a>
                             <a className="featureItem">Fork and customization</a>
                             <a className="featureItem">Lifetime money back guarantee!</a>
-                            <a className="featureItem">Save at least 2 work days with just <a className="dollar">$</a><a className="price">5</a></a>
+                            <a className="featureItem">Save at least 2 work days with just <a className="dollar">$</a><a className="price">1</a></a>
                         </div>
 
                         <div className='buttonWrapper'>
