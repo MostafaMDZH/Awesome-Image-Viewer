@@ -1,63 +1,86 @@
 import { useEffect, useState } from "react"
 import Cookies from "universal-cookie"
 
-export const Pricing = () => {
+export const PricingButton = () => {
 
-    const [ isVisible, setIsVisible ] = useState(false)
+    const [ isPurchased, setIsPurchased ] = useState(false)
 
     useEffect(() => {
+        
         const cookies = new Cookies()
+
+        //isPurchased
+        if(
+            window.location.search.includes('purchased') ||
+            cookies.get('purchased') !== undefined
+        ){
+            setIsPurchased(true)
+            setIsPurchasedCookie()
+        }
+        
+        //popup timer:
         setTimeout(() => {
             if(cookies.get('pricingPopupShowed') === undefined){
                 setIsVisible(true)
             }
-            setCookie()
+            setPopupShowedCookie()
         }, 30000)
+
     }, [])
 
     const openModal = () => {
-        setIsVisible(true)
-        setCookie()
+        const modal = document.getElementById('pricingModal')
+        modal.classList.add('visible')
+        setPopupShowedCookie()
     }
 
-    const setCookie = () => {
+    const setPopupShowedCookie = () => {
         const cookies = new Cookies()
         cookies.set('pricingPopupShowed', 'yes', { path: '/', maxAge: 399*24*60*60 })
+    }
+
+    const setIsPurchasedCookie = () => {
+        const cookies = new Cookies()
+        cookies.set('purchased', 'yes', { path: '/', maxAge: 399*24*60*60 })
     }
 
     return (
         <div>
             
             <button
-                id="pricingButton"
+                className={`pricingButton ${isPurchased ? 'purchased' : ''}`}
                 onClick={openModal}
             >
-                Buy it for $1
+                {isPurchased ? (
+                    '✓ Purchased'
+                ) : (
+                    <a>Buy it for just <a className="dollar">$</a><a className="price">1</a></a>
+                )}
             </button>
-
-            <PricingModal
-                isVisible={isVisible}
-                onClose={() => setIsVisible(false)}
-            />
 
         </div>
     )
 }
 
-const PricingModal = ({ isVisible, onClose }) => {
+export const PricingModal = () => {
 
     const goToStripe = () => {
         window.location = 'https://buy.stripe.com/test_5kAeXM1Xh4ra4iA000'
     }
 
+    const closeModal = () => {
+        const modal = document.getElementById('pricingModal')
+        modal.classList.remove('visible')
+    }
+
     return (
         <div
-            className={'pricingModal' + (isVisible ? ' visible' : '')}
-            onClick={onClose}
+            id="pricingModal"
+            onClick={closeModal}
         >
             <div className='window' onClick={e => e.stopPropagation()}>
 
-                <button className="close" onClick={onClose}/>
+                <button className="close" onClick={closeModal}/>
 
                 <div className='container'>
 

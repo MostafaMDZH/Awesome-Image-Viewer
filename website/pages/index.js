@@ -6,7 +6,7 @@ import ImageViewer from 'awesome-image-viewer'
 import * as data from '../data/data'
 import editIcon from '../public/edit.svg'
 import deleteIcon from '../public/delete.svg'
-import { Pricing } from '../components/pricing/pricing'
+import { PricingButton, PricingModal } from '../components/pricing/pricing'
 
 let isWelcomeSbShow = false;
 
@@ -52,11 +52,10 @@ export default function Main(){
             {/* header */}
             <header id='header'>
                 <Link href='https://awesome-components.com'><a className='headerLink'>Awesome Components</a></Link>
-                
+                <PricingButton/>
             </header>
 
             <div className='container' id='intro'>
-            <Pricing/>
 
                 <div id='main'>
 
@@ -78,8 +77,6 @@ export default function Main(){
                     <div id='content'>
 
                         <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer' id='github'>Github</a>
-                        {/* <PricingButton/> */}
-                        {/* //todo */}
 
                         {/* intro */}
                         <h3 id='awesome'><Link href='/'>Awesome</Link></h3>
@@ -334,6 +331,8 @@ export default function Main(){
                 <p id='githubLink'>Source on <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer'>Github</a></p>
                 <p id='awesomeComponents'>From <Link href='https://awesome-components.com'><a>Awesome Components</a></Link></p>
             </footer>
+
+            <PricingModal/>
             
         </div>
     )
