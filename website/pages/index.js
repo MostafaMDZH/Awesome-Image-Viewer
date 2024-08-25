@@ -75,8 +75,10 @@ export default function Main(){
 
                     {/* content */}
                     <div id='content'>
-
-                        <a href='https://github.com/MostafaMDZH/Awesome-Image-Viewer' id='github'>Github</a>
+                        
+                        <div id='mobilePricingButton'>
+                            <PricingButton/>
+                        </div>
 
                         {/* intro */}
                         <h3 id='awesome'><Link href='/'>Awesome</Link></h3>

@@ -54,7 +54,7 @@ export const PricingButton = () => {
                 {isPurchased ? (
                     '✓ Purchased'
                 ) : (
-                    <a>Buy it for just <a className="dollar">$</a><a className="price">1</a></a>
+                    <a>Buy it for just <a className="dollar">$</a><a className="price">5</a></a>
                 )}
             </button>
 
@@ -64,8 +64,9 @@ export const PricingButton = () => {
 
 export const PricingModal = () => {
 
-    const goToStripe = () => {
-        window.location = 'https://buy.stripe.com/test_5kAeXM1Xh4ra4iA000'
+    const goToPayment = () => {
+        // window.location = 'https://buy.stripe.com/test_5kAeXM1Xh4ra4iA000'
+        window.location = 'https://buymeacoffee.com/mostafamdzh'
     }
 
     const closeModal = () => {
@@ -87,7 +88,7 @@ export const PricingModal = () => {
                     <div className="header">
                         <p className="itIsNotFree">This component is <a className="not">NOT</a> free!</p>
                         <p className="buyAIV">Buy Awesome Image Viewer</p>
-                        <p className="priceText">For Just <a className="dollar">$</a><a className="price">1</a> !</p>
+                        <p className="priceText">For Just <a className="dollar">$</a><a className="price">5</a> !</p>
                     </div>
 
                     <div className='bottomArea'>
@@ -98,11 +99,11 @@ export const PricingModal = () => {
                             <a className="featureItem">Access to future updates</a>
                             <a className="featureItem">Fork and customization</a>
                             <a className="featureItem">Lifetime money back guarantee!</a>
-                            <a className="featureItem">Save at least 2 work days with just <a className="dollar">$</a><a className="price">1</a></a>
+                            <a className="featureItem">Save at least 2 work days with just <a className="dollar">$</a><a className="price">5</a></a>
                         </div>
 
                         <div className='buttonWrapper'>
-                            <input type='button' className='buyButton' value='Buy' onClick={goToStripe}/>
+                            <input type='button' className='buyButton' value='Buy' onClick={goToPayment}/>
                         </div>
 
                         <p className="note">If you are from countries that cannot pay online, you can use it for free.</p>

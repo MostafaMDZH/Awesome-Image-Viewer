@@ -91,11 +91,11 @@
                 max-width: 635px;
                 display: flex;
                 flex-direction: column;
-                > #github{
+                > #mobilePricingButton{
                     padding: 5px;
                     font-size: 1.05rem;
                     position: absolute;
-                    top: 0;
+                    top: -10px;
                     right: 0;
                     color: #222;
                     display: none;

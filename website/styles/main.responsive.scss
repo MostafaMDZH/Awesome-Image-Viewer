@@ -43,7 +43,7 @@
                     display: none;
                 }
                 > #content{
-                    > #github{
+                    > #mobilePricingButton{
                         display: block;
                     }
                 }
@@ -52,8 +52,8 @@
         > #footer{
             flex-direction: column;
             gap: 0;
-            > #dash,
-            > #githubLink{
+            > #dash{
+            // > #githubLink{
                 display: none;
             }
             > #awesomeComponents{
