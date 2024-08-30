@@ -1,15 +1,15 @@
-declare type image = {
+type image = {
     mainUrl: string;
     thumbnailUrl?: string;
     description?: string;
 };
-declare type button = {
+type button = {
     name: string;
     iconSrc: string;
     iconSize: string;
     onSelect: () => void;
 };
-declare type constructorParameters = {
+type constructorParameters = {
     images: image[];
     currentSelected?: number;
     buttons?: button[];
